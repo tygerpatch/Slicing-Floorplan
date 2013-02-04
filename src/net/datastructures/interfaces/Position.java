@@ -1,4 +1,4 @@
-package net.datastructures;
+package net.datastructures.interfaces;
 
 /**
  * An interface for a position, which is a holder object storing a single element.

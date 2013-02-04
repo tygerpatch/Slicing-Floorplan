@@ -1,6 +1,10 @@
-package net.datastructures;
+package net.datastructures.interfaces;
 
 import java.util.Iterator;
+
+import net.datastructures.exceptions.BoundaryViolationException;
+import net.datastructures.exceptions.EmptyTreeException;
+import net.datastructures.exceptions.InvalidPositionException;
 
 /**
  * An interface for a tree where nodes can have an arbitrary number of children.

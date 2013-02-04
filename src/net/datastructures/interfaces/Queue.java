@@ -1,4 +1,6 @@
-package net.datastructures;
+package net.datastructures.interfaces;
+
+import net.datastructures.exceptions.EmptyQueueException;
 
 // The following interface was taken from page 206 of the book
 // "Data Structures & Algorithms in Java" (4th edition) by Michael T. Goodrich & Roberto Tamassia
