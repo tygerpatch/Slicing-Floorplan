@@ -8,7 +8,11 @@ import static org.hamcrest.core.IsEqual.equalTo;
 
 import org.junit.Test;
 
-/** @author Todd Gerspacher */
+/**
+ * Class to test implementation of Singly Linked List class named Node.
+ * @author Todd Gerspacher
+ * @see net.datastructures.Node
+*/
 public class NodeTest {
 
   @Test
