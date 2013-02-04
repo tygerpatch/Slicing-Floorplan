@@ -35,8 +35,9 @@ public class FloorPlan implements ActionListener {
     this.browse = browse;
     this.rooms = rooms;
     this.nodes = nodes;
+    this.tree = new Tree();
 
-    this.browse.addActionListener(this);
+    this.browse.addActionListener(new BrowseActionListener(txtField, tree));
     this.rooms.addActionListener(this);
     this.nodes.addActionListener(this);
   }
@@ -54,11 +55,11 @@ public class FloorPlan implements ActionListener {
     // get the reference of the object that triggered the event
     Object obj = evt.getSource();
 
-    // if that object was the browse button
-    // then call a method that deals with looking for a file to use
-    if (obj == browse) {
-      selectFile();
-    }
+//    // if that object was the browse button
+//    // then call a method that deals with looking for a file to use
+//    if (obj == browse) {
+//      selectFile();
+//    }
 
     // if that object was the rooms button
     // then call method to display rooms in a separate JFrame
@@ -74,47 +75,6 @@ public class FloorPlan implements ActionListener {
   }
 
   /**
-   * This method handles the process of allowing the user to search Through the
-   * directory to find a text file to use.
-   */
-  private void selectFile() {
-    JFileChooser fileChooser = new JFileChooser();
-
-    if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-      // if user approved of selected file, then change the text
-      // in the text field to display the path of selected file.
-      txtField.setText(fileChooser.getSelectedFile().toString());
-
-      // next call method that handles the creation of the tree
-      getTree();
-    }
-  }
-
-  /**
-   * This method handles the creation of floor plan tree
-   */
-  private void getTree() {
-    String str;
-
-    // handle the reading of file in a try/catch block
-    // in case of input/output errors (like file not found)
-    try {
-      BufferedReader reader = new BufferedReader(new FileReader(txtField.getText()));
-
-      str = reader.readLine();
-      tree = new Tree();
-
-      for (int i = 0; i < str.length(); i++) {
-        tree.add(str.charAt(i));
-      }
-    }
-    catch (IOException e) {
-      // inform user of error in message box
-      JOptionPane.showMessageDialog(null, e.getMessage());
-    }
-  }
-
-  /**
    * This method handles the drawing of the nodes in the tree in a JFrame
    */
   private void drawNodes() {
@@ -123,12 +83,8 @@ public class FloorPlan implements ActionListener {
       return;
     }
 
-    // Use a class that extends from JPanel to handle drawing of nodes
-    // pass in the size to use for shapes
-    JPanel panel = new NodePanel(tree.getNodeInfoList(), 25);
-
     JFrame frame = new JFrame("Tree");
-    frame.setContentPane(panel);
+    frame.setContentPane(new NodePanel(tree.getNodeInfoList(), 25));
     frame.setSize(200, 200);
     frame.setVisible(true);
 
@@ -144,12 +100,8 @@ public class FloorPlan implements ActionListener {
       return;
     }
 
-    // Use a class that extends from JPanel to handle drawing of rooms
-    // pass in the tree Floor Plan tree to use
-    RoomPanel panel = new RoomPanel(tree);
-
     JFrame frame = new JFrame("Rooms");
-    frame.setContentPane(panel);
+    frame.setContentPane(new RoomPanel(tree));
     frame.setSize(200, 200);
     frame.setVisible(true);
 
