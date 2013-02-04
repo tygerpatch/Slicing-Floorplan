@@ -15,9 +15,9 @@ public class ElementIterator<E> implements Iterator<E> {
   protected Position<E> cursor;   // the next position
   
   /** Creates an element iterator over the given list. */
-  public ElementIterator(PositionList<E> L) {
-    list = L;
-    cursor = (list.isEmpty())? null : list.first();
+  public ElementIterator(PositionList<E> list) {
+    this.list = list;
+    cursor = (this.list.isEmpty()) ? null : this.list.first();
   }
 
   /** Returns whether the iterator has a next object. */
@@ -27,8 +27,9 @@ public class ElementIterator<E> implements Iterator<E> {
 
   /** Returns the next object in the iterator. */
   public E next() throws NoSuchElementException {
-    if (cursor == null)
+    if (cursor == null) {
       throw new NoSuchElementException("No next element");
+    }
     E toReturn = cursor.element();
     cursor = (cursor == list.last())? null : list.next(cursor);
     return toReturn;
