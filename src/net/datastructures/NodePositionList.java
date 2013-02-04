@@ -78,8 +78,8 @@ public class NodePositionList<E> implements PositionList<E> {
 
   /** Returns the position before the given one; O(1) time */
   public Position<E> prev(Position<E> position) throws InvalidPositionException, BoundaryViolationException {
-    DNode<E> v = checkPosition(position);
-    DNode<E> prev = v.getPrev();
+    DNode<E> node = checkPosition(position);
+    DNode<E> prev = node.getPrev();
 
     if (prev == header) {
       throw new BoundaryViolationException("Cannot advance past the beginning of the list");
@@ -90,8 +90,8 @@ public class NodePositionList<E> implements PositionList<E> {
 
   /** Returns the position after the given one; O(1) time */
   public Position<E> next(Position<E> position) throws InvalidPositionException, BoundaryViolationException {
-    DNode<E> v = checkPosition(position);
-    DNode<E> next = v.getNext();
+    DNode<E> node = checkPosition(position);
+    DNode<E> next = node.getNext();
 
     if (next == trailer) {
       throw new BoundaryViolationException("Cannot advance past the end of the list");
@@ -101,32 +101,29 @@ public class NodePositionList<E> implements PositionList<E> {
   }
 
   /**
-   * Insert the given element before the given position, returning the new
-   * position; O(1) time
+   * Insert the given element before the given position, returning the new position; O(1) time
    */
   public void addBefore(Position<E> position, E element) throws InvalidPositionException {
-    DNode<E> v = checkPosition(position);
+    DNode<E> node = checkPosition(position);
     numberOfElements++;
-    DNode<E> newNode = new DNode<E>(v.getPrev(), v, element);
-    v.getPrev().setNext(newNode);
-    v.setPrev(newNode);
+    DNode<E> newNode = new DNode<E>(node.getPrev(), node, element);
+    node.getPrev().setNext(newNode);
+    node.setPrev(newNode);
   }
 
   /**
-   * Insert the given element after the given position, returning the new
-   * position; O(1) time
+   * Insert the given element after the given position, returning the new position; O(1) time
    */
   public void addAfter(Position<E> position, E element) throws InvalidPositionException {
-    DNode<E> v = checkPosition(position);
+    DNode<E> node = checkPosition(position);
     numberOfElements++;
-    DNode<E> newNode = new DNode<E>(v, v.getNext(), element);
-    v.getNext().setPrev(newNode);
-    v.setNext(newNode);
+    DNode<E> newNode = new DNode<E>(node, node.getNext(), element);
+    node.getNext().setPrev(newNode);
+    node.setNext(newNode);
   }
 
   /**
-   * Insert the given element at the beginning of the list, returning the new
-   * position; O(1) time
+   * Insert the given element at the beginning of the list, returning the new position; O(1) time
    */
   public void addFirst(E element) {
     numberOfElements++;
@@ -149,16 +146,16 @@ public class NodePositionList<E> implements PositionList<E> {
 
   /** Remove the given position from the list; O(1) time */
   public E remove(Position<E> position) throws InvalidPositionException {
-    DNode<E> v = checkPosition(position);
+    DNode<E> node = checkPosition(position);
     numberOfElements--;
-    DNode<E> vPrev = v.getPrev();
-    DNode<E> vNext = v.getNext();
+    DNode<E> vPrev = node.getPrev();
+    DNode<E> vNext = node.getNext();
     vPrev.setNext(vNext);
     vNext.setPrev(vPrev);
-    E vElem = v.element();
+    E vElem = node.element();
     // unlink the position from the list and make it invalid
-    v.setNext(null);
-    v.setPrev(null);
+    node.setNext(null);
+    node.setPrev(null);
     return vElem;
   }
 
@@ -167,9 +164,9 @@ public class NodePositionList<E> implements PositionList<E> {
    * the old element; O(1) time
    */
   public E set(Position<E> position, E element) throws InvalidPositionException {
-    DNode<E> v = checkPosition(position);
-    E oldElt = v.element();
-    v.setElement(element);
+    DNode<E> node = checkPosition(position);
+    E oldElt = node.element();
+    node.setElement(element);
     return oldElt;
   }
 
@@ -180,40 +177,40 @@ public class NodePositionList<E> implements PositionList<E> {
 
   /** Returns an iterable collection of all the nodes in the list. */
   public Iterable<Position<E>> positions() { // create a list of posiitons
-    PositionList<Position<E>> P = new NodePositionList<Position<E>>();
+    PositionList<Position<E>> positionList = new NodePositionList<Position<E>>();
     if (!isEmpty()) {
-      Position<E> p = first();
+      Position<E> position = first();
       while (true) {
-        P.addLast(p); // add position p as the last element of list P
-        if (p == last()) {
+        positionList.addLast(position); // add position p as the last element of list P
+        if (position == last()) {
           break;
         }
-        p = next(p);
+        position = next(position);
       }
     }
-    return P; // return P as our Iterable object
+    return positionList; // return P as our Iterable object
   }
 
   // Convenience methods
   /** Returns whether a position is the first one; O(1) time */
   public boolean isFirst(Position<E> position) throws InvalidPositionException {
-    DNode<E> v = checkPosition(position);
-    return v.getPrev() == header;
+    DNode<E> node = checkPosition(position);
+    return node.getPrev() == header;
   }
 
   /** Returns whether a position is the last one; O(1) time */
   public boolean isLast(Position<E> position) throws InvalidPositionException {
-    DNode<E> v = checkPosition(position);
-    return v.getNext() == trailer;
+    DNode<E> node = checkPosition(position);
+    return node.getNext() == trailer;
   }
 
   /** Swap the elements of two give positions; O(1) time */
-  public void swapElements(Position<E> a, Position<E> b) throws InvalidPositionException {
-    DNode<E> pA = checkPosition(a);
-    DNode<E> pB = checkPosition(b);
-    E temp = pA.element();
-    pA.setElement(pB.element());
-    pB.setElement(temp);
+  public void swapElements(Position<E> position1, Position<E> position2) throws InvalidPositionException {
+    DNode<E> node1 = checkPosition(position1);
+    DNode<E> node2 = checkPosition(position2);
+    E element = node1.element();
+    node1.setElement(node2.element());
+    node2.setElement(element);
   }
 
   /** Returns a textual representation of a given node list using for-each */
