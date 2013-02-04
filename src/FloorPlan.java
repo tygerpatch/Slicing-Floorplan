@@ -1,4 +1,4 @@
-import gui.FileChooserPanel;
+import gui.MainPanel;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -39,60 +39,16 @@ public class FloorPlan implements ActionListener
  private JButton browse;
  private JButton rooms;
  private JButton nodes;
- 
- /**
-  This method runs the application
- */
- public void run()
- {
-  // this frame will contain the buttons to select the file to use
-  //  and weather to display the nodes or the rooms graphically
-  JFrame frm = new JFrame("Floor Plan");
-  JPanel p = new JPanel(new BorderLayout());
+  
+ public FloorPlan(JTextField txtField, JButton browse, JButton rooms, JButton nodes) {
+   this.txtField = txtField;
+   this.browse = browse;
+   this.rooms = rooms;
+   this.nodes = nodes;
 
-  FileChooserPanel fileChooserPanel = new FileChooserPanel();
-
-  txtField = fileChooserPanel.getTextField();
-  browse = fileChooserPanel.getButton();
-  browse.addActionListener(this);
-
-  p.add( fileChooserPanel, BorderLayout.NORTH);
-  p.add( drawPanel() );
-
-  frm.setContentPane(p);
-  frm.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-  frm.pack();
-  frm.setVisible(true);
- }
-
- /**
-  This method creates a JPanel containing buttons
-   That allow user either to graphically display
-   the nodes the floor plan tree Or display the rooms it describes
-
-  @return JPanel the JPanel created in method
- */
- private JPanel drawPanel()
- {
-  JPanel p = new JPanel(new GridLayout(1,5));
-
-  // this JButton will allow user to display the rooms
-  //  as described by the given text file
-  rooms = new JButton("ROOMS");
-  rooms.addActionListener(this);
-
-  // this JButton will allow user to display the nodes
-  //  of the binary floor plan tree
-  nodes = new JButton("NODES");
-  nodes.addActionListener(this);
-		
-  p.add( new JLabel("") );
-  p.add( rooms );
-  p.add( new JLabel("") );
-  p.add( nodes );
-  p.add( new JLabel("") );
-		
-  return p;
+   this.browse.addActionListener(this);
+   this.rooms.addActionListener(this);
+   this.nodes.addActionListener(this);
  }
  
  /**
@@ -223,9 +179,15 @@ public class FloorPlan implements ActionListener
  */
  public static void main(String[] args)
  {
-  FloorPlan test = new FloorPlan();
-  test.run();
+   MainPanel mainPanel = new MainPanel();
+   FloorPlan floorPlan = new FloorPlan(mainPanel.getTxtField(), mainPanel.getBrowse(), mainPanel.getRooms(), mainPanel.getNodes());
 
+  JFrame frame = new JFrame("Floor Plan");
+  frame.setContentPane(mainPanel);
+  frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+  frame.pack();
+  frame.setVisible(true);
+  
   // Tree.main(args); // test Tree class
   // NodeInfoList.main(args); // test NodeInfoList class
   // NodePanel.main(args); // test NodePanel class
