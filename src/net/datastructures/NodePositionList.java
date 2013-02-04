@@ -7,36 +7,40 @@ import java.util.Iterator;
  * @author Michael Goodrich, Natasha Gelfand, Roberto Tamassia, Eric Zamore
  */
 public class NodePositionList<E> implements PositionList<E> {
-  protected int numElts;              // Number of elements in the list
+  protected int numberOfElements;     // Number of elements in the list
   protected DNode<E> header, trailer; // Special sentinels
 
   /** Constructor that creates an empty list; O(1) time */
   public NodePositionList() {
-    numElts = 0;
+    numberOfElements = 0;
     header = new DNode<E>(null, null, null);    // create header
     trailer = new DNode<E>(header, null, null); // create trailer
     header.setNext(trailer);                    // make header and trailer point to each other
   }
 
   /**
-   * Checks if position is valid for this list and converts it to DNode if it is
-   * valid; O(1) time
+   * Checks if position is valid for this list and converts it to DNode if it is valid; O(1) time
    */
-  protected DNode<E> checkPosition(Position<E> p) throws InvalidPositionException {
-    if (p == null) {
+  protected DNode<E> checkPosition(Position<E> position) throws InvalidPositionException {
+    if (position == null) {
       throw new InvalidPositionException("Null position passed to NodeList");
     }
-    if (p == header) {
+
+    if (position == header) {
       throw new InvalidPositionException("The header node is not a valid position");
     }
-    if (p == trailer) {
+
+    if (position == trailer) {
       throw new InvalidPositionException("The trailer node is not a valid position");
     }
+
     try {
-      DNode<E> temp = (DNode<E>) p;
+      DNode<E> temp = (DNode<E>) position;
+
       if ((temp.getPrev() == null) || (temp.getNext() == null)) {
         throw new InvalidPositionException("Position does not belong to a valid NodeList");
       }
+
       return temp;
     }
     catch (ClassCastException e) {
@@ -46,12 +50,12 @@ public class NodePositionList<E> implements PositionList<E> {
 
   /** Returns the number of elements in the list; O(1) time */
   public int size() {
-    return numElts;
+    return numberOfElements;
   }
 
   /** Returns whether the list is empty; O(1) time */
   public boolean isEmpty() {
-    return (numElts == 0);
+    return (numberOfElements == 0);
   }
 
   /** Returns the first position in the list; O(1) time */
@@ -59,6 +63,7 @@ public class NodePositionList<E> implements PositionList<E> {
     if (isEmpty()) {
       throw new EmptyListException("List is empty");
     }
+
     return header.getNext();
   }
 
@@ -67,26 +72,31 @@ public class NodePositionList<E> implements PositionList<E> {
     if (isEmpty()) {
       throw new EmptyListException("List is empty");
     }
+
     return trailer.getPrev();
   }
 
   /** Returns the position before the given one; O(1) time */
-  public Position<E> prev(Position<E> p) throws InvalidPositionException, BoundaryViolationException {
-    DNode<E> v = checkPosition(p);
+  public Position<E> prev(Position<E> position) throws InvalidPositionException, BoundaryViolationException {
+    DNode<E> v = checkPosition(position);
     DNode<E> prev = v.getPrev();
+
     if (prev == header) {
       throw new BoundaryViolationException("Cannot advance past the beginning of the list");
     }
+
     return prev;
   }
 
   /** Returns the position after the given one; O(1) time */
-  public Position<E> next(Position<E> p) throws InvalidPositionException, BoundaryViolationException {
-    DNode<E> v = checkPosition(p);
+  public Position<E> next(Position<E> position) throws InvalidPositionException, BoundaryViolationException {
+    DNode<E> v = checkPosition(position);
     DNode<E> next = v.getNext();
+
     if (next == trailer) {
       throw new BoundaryViolationException("Cannot advance past the end of the list");
     }
+
     return next;
   }
 
@@ -94,9 +104,9 @@ public class NodePositionList<E> implements PositionList<E> {
    * Insert the given element before the given position, returning the new
    * position; O(1) time
    */
-  public void addBefore(Position<E> p, E element) throws InvalidPositionException {
-    DNode<E> v = checkPosition(p);
-    numElts++;
+  public void addBefore(Position<E> position, E element) throws InvalidPositionException {
+    DNode<E> v = checkPosition(position);
+    numberOfElements++;
     DNode<E> newNode = new DNode<E>(v.getPrev(), v, element);
     v.getPrev().setNext(newNode);
     v.setPrev(newNode);
@@ -106,9 +116,9 @@ public class NodePositionList<E> implements PositionList<E> {
    * Insert the given element after the given position, returning the new
    * position; O(1) time
    */
-  public void addAfter(Position<E> p, E element) throws InvalidPositionException {
-    DNode<E> v = checkPosition(p);
-    numElts++;
+  public void addAfter(Position<E> position, E element) throws InvalidPositionException {
+    DNode<E> v = checkPosition(position);
+    numberOfElements++;
     DNode<E> newNode = new DNode<E>(v, v.getNext(), element);
     v.getNext().setPrev(newNode);
     v.setNext(newNode);
@@ -119,7 +129,7 @@ public class NodePositionList<E> implements PositionList<E> {
    * position; O(1) time
    */
   public void addFirst(E element) {
-    numElts++;
+    numberOfElements++;
     DNode<E> newNode = new DNode<E>(header, header.getNext(), element);
     header.getNext().setPrev(newNode);
     header.setNext(newNode);
@@ -130,7 +140,7 @@ public class NodePositionList<E> implements PositionList<E> {
    * position; O(1) time
    */
   public void addLast(E element) {
-    numElts++;
+    numberOfElements++;
     DNode<E> oldLast = trailer.getPrev();
     DNode<E> newNode = new DNode<E>(oldLast, trailer, element);
     oldLast.setNext(newNode);
@@ -138,9 +148,9 @@ public class NodePositionList<E> implements PositionList<E> {
   }
 
   /** Remove the given position from the list; O(1) time */
-  public E remove(Position<E> p) throws InvalidPositionException {
-    DNode<E> v = checkPosition(p);
-    numElts--;
+  public E remove(Position<E> position) throws InvalidPositionException {
+    DNode<E> v = checkPosition(position);
+    numberOfElements--;
     DNode<E> vPrev = v.getPrev();
     DNode<E> vNext = v.getNext();
     vPrev.setNext(vNext);
@@ -156,8 +166,8 @@ public class NodePositionList<E> implements PositionList<E> {
    * Replace the element at the given position with the new element and return
    * the old element; O(1) time
    */
-  public E set(Position<E> p, E element) throws InvalidPositionException {
-    DNode<E> v = checkPosition(p);
+  public E set(Position<E> position, E element) throws InvalidPositionException {
+    DNode<E> v = checkPosition(position);
     E oldElt = v.element();
     v.setElement(element);
     return oldElt;
@@ -175,8 +185,9 @@ public class NodePositionList<E> implements PositionList<E> {
       Position<E> p = first();
       while (true) {
         P.addLast(p); // add position p as the last element of list P
-        if (p == last())
+        if (p == last()) {
           break;
+        }
         p = next(p);
       }
     }
@@ -185,14 +196,14 @@ public class NodePositionList<E> implements PositionList<E> {
 
   // Convenience methods
   /** Returns whether a position is the first one; O(1) time */
-  public boolean isFirst(Position<E> p) throws InvalidPositionException {
-    DNode<E> v = checkPosition(p);
+  public boolean isFirst(Position<E> position) throws InvalidPositionException {
+    DNode<E> v = checkPosition(position);
     return v.getPrev() == header;
   }
 
   /** Returns whether a position is the last one; O(1) time */
-  public boolean isLast(Position<E> p) throws InvalidPositionException {
-    DNode<E> v = checkPosition(p);
+  public boolean isLast(Position<E> position) throws InvalidPositionException {
+    DNode<E> v = checkPosition(position);
     return v.getNext() == trailer;
   }
 
@@ -206,30 +217,34 @@ public class NodePositionList<E> implements PositionList<E> {
   }
 
   /** Returns a textual representation of a given node list using for-each */
-  public static <E> String forEachToString(PositionList<E> L) {
-    String s = "[";
-    int i = L.size();
-    for (E elem : L) {
-      s += elem; // implicit cast of the element to String
+  public static <E> String forEachToString(PositionList<E> positionList) {
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append("[");
+    int i = positionList.size();
+    for (E elem : positionList) {
+      stringBuilder.append(elem);  // implicit cast of the element to String
       i--;
-      if (i > 0)
-        s += ", "; // separate elements with a comma
+      if (i > 0) {
+        stringBuilder.append(", ");  // separate elements with a comma
+      }
     }
-    s += "]";
-    return s;
+    stringBuilder.append("]");
+    return stringBuilder.toString();
   }
 
   /** Returns a textual representation of a given node list */
-  public static <E> String toString(PositionList<E> l) {
-    Iterator<E> it = l.iterator();
-    String s = "[";
-    while (it.hasNext()) {
-      s += it.next(); // implicit cast of the next element to String
-      if (it.hasNext())
-        s += ", ";
+  public static <E> String toString(PositionList<E> positionList) {
+    Iterator<E> iterator = positionList.iterator();
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append("[");
+    while (iterator.hasNext()) {
+      stringBuilder.append(iterator.next());  // implicit cast of the next element to String
+      if (iterator.hasNext()){
+        stringBuilder.append(", ");
+      }
     }
-    s += "]";
-    return s;
+    stringBuilder.append("]");
+    return stringBuilder.toString();
   }
 
   /** Returns a textual representation of the list */
