@@ -1,3 +1,5 @@
+import gui.FileChooserPanel;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -48,40 +50,21 @@ public class FloorPlan implements ActionListener
   JFrame frm = new JFrame("Floor Plan");
   JPanel p = new JPanel(new BorderLayout());
 
-  p.add( filePanel(), BorderLayout.NORTH);
+  FileChooserPanel fileChooserPanel = new FileChooserPanel();
+
+  txtField = fileChooserPanel.getTextField();
+  browse = fileChooserPanel.getButton();
+  browse.addActionListener(this);
+
+  p.add( fileChooserPanel, BorderLayout.NORTH);
   p.add( drawPanel() );
-   
+
   frm.setContentPane(p);
   frm.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
   frm.pack();
   frm.setVisible(true);
  }
- 
- /**
-  This method creates a JPanel containing a JButton 
-   That allows the user to search through the directory
-   To find which file to use.
-  @return JPanel the JPanel created in method
- */
- private JPanel filePanel()
- {
-  JPanel p = new JPanel(new GridLayout(1,3));
 
-  // this JTextField will display the path of file choosen		
-  txtField = new JTextField(10);
-  txtField.setEditable(false);
-
-  // this JButton will allow user to search through directory		
-  browse = new JButton("...");
-  browse.addActionListener(this);		
-		
-  p.add(new JLabel(" Floor Plan file:"));
-  p.add(txtField);
-  p.add(browse);
-		
-  return p;
- }
- 
  /**
   This method creates a JPanel containing buttons
    That allow user either to graphically display
