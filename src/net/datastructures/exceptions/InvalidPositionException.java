@@ -1,4 +1,4 @@
-package net.datastructures;
+package net.datastructures.exceptions;
 
 /**
  * Thrown when a position is determined to be invalid.

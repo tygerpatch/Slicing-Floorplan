@@ -1,4 +1,4 @@
-package net.datastructures;
+package net.datastructures.exceptions;
 
 /**
  * Signals that the boundaries of a data structure have been illegally traversed

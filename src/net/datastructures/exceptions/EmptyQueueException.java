@@ -1,4 +1,4 @@
-package net.datastructures;
+package net.datastructures.exceptions;
 
 /**
  * Runtime exception thrown when one tries to perform operation front or dequeue on an empty queue.

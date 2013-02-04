@@ -1,4 +1,4 @@
-package net.datastructures;
+package net.datastructures.exceptions;
 /**
  * Thrown when a list cannot fulfill the requested operation because it is empty.
  * @author Roberto Tamassia
