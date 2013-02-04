@@ -42,4 +42,3 @@ public class ElementIterator<E> implements Iterator<E> {
     throw new UnsupportedOperationException("remove");
   }
 }
-
