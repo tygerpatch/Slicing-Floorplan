@@ -87,40 +87,39 @@ public class NodeQueue<E> implements Queue<E> {
     return element;
   }
 
+  /** @return String representation of Queue, ex. (1, 2, 3) */
   public String toString() {
-    String s = "";
-    s += "(";
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append("(");
+
     if (!isEmpty()) {
-      Node p = head;
+      Node head = this.head;
       do {
-        s += p.getElement();
-        if (p != tail)
-          s += ", ";
-        p = p.getNext();
-      } while (p != null);
+        stringBuilder.append(head.getElement());
+        if (head != tail) {
+          stringBuilder.append(", ");
+        }
+        head = head.getNext();
+      } while (head != null);
     }
-    s += ")";
-    return s;
+
+    stringBuilder.append(")");
+    return stringBuilder.toString();
   }
 
   /**
    * Prints information about an operation and the queue.
-   * @param op operation performed
+   * @param operation operation performed
    * @param element element returned by the operation
    * @return information about the operation performed, the element returned by
    *         the operation and the content of the stack after the operation.
    */
-  public static void status(Queue Q, String op, Object element) {
+  public static void status(Queue queue, String operation, Object element) {
     System.out.println("---------------------------------");
-    System.out.println(op);
+    System.out.println(operation);
     System.out.println("Returned: " + element);
-    String emptyStatus;
-    if (Q.isEmpty())
-      emptyStatus = "empty";
-    else
-      emptyStatus = "not empty";
-    System.out.println("size = " + Q.size() + ", " + emptyStatus);
-    System.out.println("Queue: " + Q);
+    System.out.println("size = " + queue.size() + ", " + (queue.isEmpty() ? "empty" : "not empty"));
+    System.out.println("Queue: " + queue);
   }
 
   /**
@@ -129,22 +128,28 @@ public class NodeQueue<E> implements Queue<E> {
    * after each operation.
    */
   public static void main(String[] args) {
-    Object o;
-    Queue<Integer> A = new NodeQueue<Integer>();
-    status(A, "New empty queue", null);
-    A.enqueue(5);
-    status(A, "enqueue(5)", null);
-    A.enqueue(3);
-    status(A, "enqueue(3)", null);
-    A.enqueue(7);
-    status(A, "enqueue(7)", null);
-    o = A.dequeue();
-    status(A, "dequeue()", o);
-    A.enqueue(9);
-    status(A, "enqueue(9)", null);
-    o = A.dequeue();
-    status(A, "dequeue()", o);
-    o = o = A.front();
-    status(A, "front()", o);
+    Queue<Integer> queue = new NodeQueue<Integer>();
+    status(queue, "New empty queue", null);
+
+    queue.enqueue(5);
+    status(queue, "enqueue(5)", null);
+
+    queue.enqueue(3);
+    status(queue, "enqueue(3)", null);
+
+    queue.enqueue(7);
+    status(queue, "enqueue(7)", null);
+
+    Object obj = queue.dequeue();
+    status(queue, "dequeue()", obj);
+
+    queue.enqueue(9);
+    status(queue, "enqueue(9)", null);
+
+    obj = queue.dequeue();
+    status(queue, "dequeue()", obj);
+
+    obj = queue.front();
+    status(queue, "front()", obj);
   }
 }
