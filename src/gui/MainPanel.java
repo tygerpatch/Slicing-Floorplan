@@ -2,12 +2,16 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import src.NodesActionListener;
+import src.RoomsActionListener;
 
 /**
  * This class does not perform any actions.
@@ -66,19 +70,16 @@ public class MainPanel extends JPanel {
     return txtField;
   }
 
-  // TODO: Remove this method, implemented to support existing code
-  public JButton getBrowse() {
-    return browse;
+  public void setBrowseActionListener(ActionListener actionListener) {
+    browse.addActionListener(actionListener);
   }
 
-  // TODO: Remove this method, implemented to support existing code
-  public JButton getRooms() {
-    return rooms;
+  public void setRoomsActionListener(ActionListener actionListener) {
+    rooms.addActionListener(actionListener);
   }
 
-  // TODO: Remove this method, implemented to support existing code
-  public JButton getNodes() {
-    return nodes;
+  public void setNodesActionListener(ActionListener actionListener) {
+    nodes.addActionListener(actionListener);
   }
 
   public static void main(String[] args) {

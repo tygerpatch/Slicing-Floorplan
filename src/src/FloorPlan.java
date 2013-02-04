@@ -24,31 +24,21 @@ import javax.swing.JTextField;
  * @author Todd Gerspacher
  */
 public class FloorPlan {
-  private Tree tree;
-  private JTextField txtField;
-  private JButton browse;
-  private JButton rooms;
-  private JButton nodes;
-
-  public FloorPlan(JTextField txtField, JButton browse, JButton rooms, JButton nodes) {
-    this.txtField = txtField;
-    this.browse = browse;
-    this.rooms = rooms;
-    this.nodes = nodes;
-    this.tree = new Tree();
-
-    this.browse.addActionListener(new BrowseActionListener(txtField, tree));
-    this.rooms.addActionListener(new RoomsActionListener(tree));
-    this.nodes.addActionListener(new NodesActionListener(tree));
-  }
-
   /**
-   * This is the main method that runs the application from the console No
-   * arguments are required to run application
+   * This is the main method that runs the application from the console.
+   * No arguments are required to run application
    */
   public static void main(String[] args) {
     MainPanel mainPanel = new MainPanel();
-    FloorPlan floorPlan = new FloorPlan(mainPanel.getTxtField(), mainPanel.getBrowse(), mainPanel.getRooms(), mainPanel.getNodes());
+    // Note: MainPanel has its own main method for testing how it looks.
+    // Therefore I had to use a separate class.  Plus FloorPlan is more intuitive as a starting point for a project titled FloorPlan.
+
+    Tree tree = new Tree();
+    JTextField txtField = mainPanel.getTxtField();
+
+    mainPanel.setBrowseActionListener(new BrowseActionListener(txtField, tree));
+    mainPanel.setRoomsActionListener(new RoomsActionListener(tree));
+    mainPanel.setNodesActionListener(new NodesActionListener(tree));
 
     JFrame frame = new JFrame("Floor Plan");
     frame.setContentPane(mainPanel);
