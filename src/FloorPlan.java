@@ -1,27 +1,26 @@
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-
-import java.util.ListIterator;
-import java.util.LinkedList;
-
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Color;
-import java.awt.Rectangle;
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
-
-import java.awt.event.ActionListener;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
-
-import java.io.IOException;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.ListIterator;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import net.datastructures.NodeQueue;
 
 /**
  Program request text file containing floor plan to use.
@@ -469,8 +468,8 @@ class NodeInfoList extends LinkedList<NodeInfo>
 */
 class Tree
 {
- private int visited = 0; // used in generating NodeInfoList
- private LinkedQueue queue; // used in drawing the rooms
+ private int visited = 0;             // used in generating NodeInfoList
+ private NodeQueue<Rectangle> queue;  // used in drawing the rooms
 
  /**
    This class will represent the nodes in the tree
@@ -685,8 +684,8 @@ class Tree
  {
   // first create a new LinkedQueue 
   //  and push on a rectangular representation of the floor (without rooms)
-  queue = new LinkedQueue();
-  queue.push( new Rectangle(x, y, width, height) );
+  queue = new NodeQueue<Rectangle>();
+  queue.enqueue(new Rectangle(x, y, width, height));
 
   drawRooms(root, g);
  }
@@ -727,28 +726,26 @@ class Tree
  private void drawVerticalCut()
  {
   // First pop off the last rectangle (to be used in cut)
-  Rectangle temp = (Rectangle)queue.pop();
-  LinkedQueue q = new LinkedQueue();
+   Rectangle temp = (Rectangle)queue.dequeue();
+  NodeQueue<Rectangle> q = new NodeQueue<Rectangle>();
 
   // Next determine the new two rooms new width value		
   int newWidth = (int)(temp.getWidth()/2);
 
   // remove all old rectangle shapes, so that the
   //  the new rectangle shapes can become first and second in queue
-  while( !queue.isEmpty() )
-   q.push( queue.pop() );     
+  while(!queue.isEmpty())
+    q.enqueue(queue.dequeue());
   
   // push the first half of room onto queue
-  queue.push( new Rectangle( (int)temp.getX(), (int)temp.getY(),
-			newWidth, (int)temp.getHeight()) );
+  queue.enqueue(new Rectangle( (int)temp.getX(), (int)temp.getY(), newWidth, (int)temp.getHeight()) );
 
   // push the second half of room onto queue
-  queue.push( new Rectangle( (int)temp.getX() + newWidth,
-			(int)temp.getY(), newWidth, (int)temp.getHeight()) );
+  queue.enqueue( new Rectangle( (int)temp.getX() + newWidth, (int)temp.getY(), newWidth, (int)temp.getHeight()) );
 
   // replace old rectangle shapes into queue
-  while(  !q.isEmpty() )
-   queue.push( q.pop() );
+  while(!q.isEmpty())
+    queue.enqueue(q.dequeue());
  }
 
  /**
@@ -758,8 +755,8 @@ class Tree
  private void drawHorizontalCut()
  {
   // First pop off the last rectangle (to be used in cut)
-  Rectangle temp = (Rectangle)queue.pop();
-  LinkedQueue q = new LinkedQueue();
+   Rectangle temp = (Rectangle)queue.dequeue();
+  NodeQueue<Rectangle> q = new NodeQueue<Rectangle>();
 
   // Next determine the new two rooms new height value
   int newHeight = (int)(temp.getHeight()/2);
@@ -767,19 +764,17 @@ class Tree
   // remove all old rectangle shapes, so that the
   //  the new rectangle shapes can become first and second in queue
   while( !queue.isEmpty() )
-   q.push( queue.pop() );     
+    q.enqueue( queue.dequeue() );
   
   // push the first half of room onto queue
-  queue.push( new Rectangle( (int)temp.getX(), (int)temp.getY(), 
-					(int)temp.getWidth(), newHeight) );
+  queue.enqueue( new Rectangle( (int)temp.getX(), (int)temp.getY(), (int)temp.getWidth(), newHeight) );
 
   // push the second half of room onto queue
-  queue.push( new Rectangle( (int)temp.getX(), (int)temp.getY() + newHeight, 
-				(int)temp.getWidth(), newHeight) );
+  queue.enqueue( new Rectangle( (int)temp.getX(), (int)temp.getY() + newHeight, (int)temp.getWidth(), newHeight) );
 
   // replace old rectangle shapes into queue
   while(  !q.isEmpty() )
-   queue.push( q.pop() );     
+    queue.enqueue( q.dequeue() );
  }
 
  /**
@@ -791,7 +786,7 @@ class Tree
  */			
  private void drawRoom(Node node, Graphics2D g)
  {
-  Rectangle temp = (Rectangle)queue.pop();
+   Rectangle temp = (Rectangle)queue.dequeue();
   
   float x = (float)(temp.getX() + (temp.getWidth()/2));
   float y = (float)(temp.getY() + (temp.getHeight()/2));
