@@ -10,15 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import src.NodesActionListener;
-import src.RoomsActionListener;
-
 /**
  * This class does not perform any actions.
  * It is just a GUI for letting the user choose the floor plan file.
  * Also has buttons for showing Rooms and Nodes
  * @author Todd
- *
  */
 public class MainPanel extends JPanel {
   private JTextField txtField;
@@ -36,24 +32,19 @@ public class MainPanel extends JPanel {
 
     // this JButton will allow user to search through directory
     browse = new JButton("...");
-    // browse.addActionListener(this);
 
     fileChooserPanel.add(new JLabel(" Floor Plan file:"));
     fileChooserPanel.add(txtField);
     fileChooserPanel.add(browse);
-    
+
     JPanel drawPanel = new JPanel(new GridLayout(1, 5));
 
-    // this JButton will allow user to display the rooms
-    //  as described by the given text file
+    // this JButton will allow user to display the rooms as described by the given text file
     rooms = new JButton("ROOMS");
-    // rooms.addActionListener(this);
 
-    // this JButton will allow user to display the nodes
-    //  of the binary floor plan tree
+    // this JButton will allow user to display the nodes of the binary floor plan tree
     nodes = new JButton("NODES");
-    // nodes.addActionListener(this);
-      
+
     drawPanel.add(new JLabel(""));
     drawPanel.add(rooms);
     drawPanel.add(new JLabel(""));
