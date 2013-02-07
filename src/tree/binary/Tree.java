@@ -1,15 +1,12 @@
-package tree.binary.src;
+package tree.binary;
 
-import tree.general.src.GeneralTree;
-import tree.general.src.GeneralTreeNode;
-
-public class BinaryTree<E> extends GeneralTree<E> {
+public class Tree<E> extends tree.general.Tree<E> {
 
   public String inorder() {
-    return inorder((BinaryTreeNode<E>)root);
+    return inorder((tree.binary.Node<E>)root);
   }
 
-  private String inorder(BinaryTreeNode<E> node) {
+  private String inorder(tree.binary.Node<E> node) {
     StringBuilder stringBuilder = new StringBuilder();
 
     if(null != node) {

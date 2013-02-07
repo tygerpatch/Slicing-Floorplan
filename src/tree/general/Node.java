@@ -1,18 +1,18 @@
-package tree.general.src;
+package tree.general;
 
 import java.util.LinkedList;
 import java.util.List;
 
 //@author Todd Gerspacher
-public class GeneralTreeNode<E> {
+public class Node<E> {
 
-  protected GeneralTreeNode<E> parent;
+  protected Node<E> parent;
 
-  public void setParent(GeneralTreeNode<E> node) {
+  public void setParent(Node<E> node) {
     parent = node;
   }
 
-  public GeneralTreeNode<E> getParent() {
+  public Node<E> getParent() {
     return parent;
   }
 
@@ -26,21 +26,21 @@ public class GeneralTreeNode<E> {
     return value;
   }
 
-  public GeneralTreeNode() {
+  public Node() {
   }
 
-  public GeneralTreeNode(E value) {
+  public Node(E value) {
     this.value = value;
   }
 
-  protected List<GeneralTreeNode<E>> children = new LinkedList<GeneralTreeNode<E>>();
+  protected List<Node<E>> children = new LinkedList<Node<E>>();
 
-  public void addChild(GeneralTreeNode<E> node) {
+  public void addChild(Node<E> node) {
     children.add(node);
     node.setParent(this);
   }
 
-  public boolean removeChild(GeneralTreeNode<E> node) {
+  public boolean removeChild(Node<E> node) {
     if(children.remove(node)) {
       node.setParent(null);
       return true;
@@ -49,12 +49,12 @@ public class GeneralTreeNode<E> {
     return false;
   }
 
-  public List<GeneralTreeNode<E>> getChildren() {
+  public List<Node<E>> getChildren() {
     return children;
   }
 
   // "Two nodes that are children of the same parent are siblings."
-  public boolean isSiblingOf(GeneralTreeNode<E> node) {
+  public boolean isSiblingOf(Node<E> node) {
     return (this.parent == node.parent);
   }
 
@@ -74,12 +74,12 @@ public class GeneralTreeNode<E> {
   }
 
   // "A node u is an ancestor of a node v if u = v or u is an ancestor of the parent of v."
-  public boolean isAncestorOf(GeneralTreeNode<E> node) {
+  public boolean isAncestorOf(Node<E> node) {
     return ((this == node) || (this == node.getParent()));
   }
 
   // If node u is an ancestor of node v, then v is a descendent of u.
-  public boolean isDescendentOf(GeneralTreeNode<E> node) {
+  public boolean isDescendentOf(Node<E> node) {
     return node.isAncestorOf(this);
   }
 }
