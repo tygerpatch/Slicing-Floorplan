@@ -7,12 +7,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
+import tree.binary.Tree;
+
 // Handles drawing of the nodes in the tree in a JFrame.
 public class NodesActionListener implements ActionListener {
 
-  private Tree tree;
+  private Tree<Character> tree;
 
-  public NodesActionListener(Tree tree) {
+  public NodesActionListener(Tree<Character> tree) {
     this.tree = tree;
   }
 
@@ -24,7 +26,7 @@ public class NodesActionListener implements ActionListener {
     }
 
     JFrame frame = new JFrame("Tree");
-    frame.setContentPane(new NodePanel(tree.getNodeInfoList(), 25));
+    frame.setContentPane(new NodePanel(tree));
     frame.setSize(200, 200);
     frame.setVisible(true);
 

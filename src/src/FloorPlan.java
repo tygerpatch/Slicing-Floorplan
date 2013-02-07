@@ -1,21 +1,11 @@
 package src;
 
 import gui.MainPanel;
-import gui.NodePanel;
-import gui.RoomPanel;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import tree.binary.Tree;
 
 /**
  * Program request text file containing floor plan to use.
@@ -33,7 +23,7 @@ public class FloorPlan {
     // Note: MainPanel has its own main method for testing how it looks.
     // Therefore I had to use a separate class.  Plus FloorPlan is more intuitive as a starting point for a project titled FloorPlan.
 
-    Tree tree = new Tree();
+    Tree<Character> tree = new Tree<Character>();
     JTextField txtField = mainPanel.getTxtField();
 
     mainPanel.setBrowseActionListener(new BrowseActionListener(txtField, tree));

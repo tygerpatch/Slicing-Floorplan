@@ -3,6 +3,7 @@ package src;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -10,12 +11,14 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import tree.binary.Tree;
+
 public class BrowseActionListener implements ActionListener {
 
   private JTextField textField;
-  private Tree tree;
+  private Tree<Character> tree;
 
-  public BrowseActionListener(JTextField textField, Tree tree) {
+  public BrowseActionListener(JTextField textField, Tree<Character> tree) {
     this.textField = textField;
     this.tree = tree;
   }
@@ -27,29 +30,28 @@ public class BrowseActionListener implements ActionListener {
     if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
       textField.setText(fileChooser.getSelectedFile().toString());
 
-      // next call method that handles the creation of the tree
-      getTree();
-    }
-  }
+      String readLine;
 
-  /** This method handles the creation of floor plan tree */
-  private void getTree() {
-    String str;
+      try {
+        FileReader fileReader = new FileReader(textField.getText());
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-    // handle the reading of file in a try/catch block
-    // in case of input/output errors (like file not found)
-    try {
-      BufferedReader reader = new BufferedReader(new FileReader(textField.getText()));
-
-      str = reader.readLine();
-
-      for (int i = 0; i < str.length(); i++) {
-        tree.add(str.charAt(i));
+        try {
+          readLine = bufferedReader.readLine();
+          bufferedReader.close();
+          fileReader.close();
+        }
+        catch(IOException ioException) {
+          JOptionPane.showMessageDialog(null, ioException.getMessage());
+          return;
+        }
       }
-    }
-    catch (IOException io) {
-      JOptionPane.showMessageDialog(null, io.getMessage());
+      catch(FileNotFoundException fileNotFoundException) {
+        JOptionPane.showMessageDialog(null, fileNotFoundException.getMessage());
+        return;
+      }
+
+      tree = FloorPlanReader.buildTree(readLine);
     }
   }
-
 }

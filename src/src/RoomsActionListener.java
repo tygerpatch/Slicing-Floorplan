@@ -7,12 +7,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
+import tree.binary.Tree;
+
 // Handles the drawing of the rooms as is described by the text file.
 public class RoomsActionListener implements ActionListener {
 
-  private Tree tree;
+  private Tree<Character> tree;
 
-  public RoomsActionListener(Tree tree) {
+  public RoomsActionListener(Tree<Character> tree) {
     this.tree = tree;
   }
 
