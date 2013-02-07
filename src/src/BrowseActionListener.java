@@ -19,11 +19,9 @@ import tree.binary.Tree;
 public class BrowseActionListener implements ActionListener {
 
   private JTextField textField;
-  private Tree<Character> tree;
 
-  public BrowseActionListener(JTextField textField, Tree<Character> tree) {
+  public BrowseActionListener(JTextField textField) {
     this.textField = textField;
-    this.tree = tree;
   }
 
   @Override
@@ -32,29 +30,6 @@ public class BrowseActionListener implements ActionListener {
 
     if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
       textField.setText(fileChooser.getSelectedFile().toString());
-
-      String readLine;
-
-      try {
-        FileReader fileReader = new FileReader(textField.getText());
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-        try {
-          readLine = bufferedReader.readLine();
-          bufferedReader.close();
-          fileReader.close();
-        }
-        catch(IOException ioException) {
-          JOptionPane.showMessageDialog(null, ioException.getMessage());
-          return;
-        }
-      }
-      catch(FileNotFoundException fileNotFoundException) {
-        JOptionPane.showMessageDialog(null, fileNotFoundException.getMessage());
-        return;
-      }
-
-      tree = FloorPlanReader.buildTree(readLine);
     }
   }
 }

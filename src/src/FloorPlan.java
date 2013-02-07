@@ -24,11 +24,11 @@ public class FloorPlan {
     // Therefore I had to use a separate class.  Plus FloorPlan is more intuitive as a starting point for a project titled FloorPlan.
 
     Tree<Character> tree = new Tree<Character>();
-    JTextField txtField = mainPanel.getTxtField();
+    JTextField textField = mainPanel.getTxtField();
 
-    mainPanel.setBrowseActionListener(new BrowseActionListener(txtField, tree));
-    mainPanel.setRoomsActionListener(new RoomsActionListener(tree));
-    mainPanel.setNodesActionListener(new NodesActionListener(tree));
+    mainPanel.setBrowseActionListener(new BrowseActionListener(textField));
+    mainPanel.setRoomsActionListener(new RoomsActionListener(textField));
+    mainPanel.setNodesActionListener(new NodesActionListener(textField));
 
     JFrame frame = new JFrame("Floor Plan");
     frame.setContentPane(mainPanel);
