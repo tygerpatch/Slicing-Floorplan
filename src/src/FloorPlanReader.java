@@ -34,7 +34,7 @@ public class FloorPlanReader {
         }
       }
     }
-    Node<Character> root = stack.pop();
+    Node<Character> root = stack.size() > 0 ? stack.pop() : curr;
     Tree<Character> tree = new Tree<Character>();
     tree.setRoot(root);
 
