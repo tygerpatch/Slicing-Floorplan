@@ -1,137 +1,77 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.util.ListIterator;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import src.NodeInfo;
-import src.NodeInfoList;
-import src.Tree;
+import src.FloorPlanReader;
+import tree.binary.Tree;
+import tree.binary.Node;
 
-/**
- * This class extends from JPanel to handle drawing the nodes of the tree
- * @author Todd Gerspacher
-*/
+// This class extends from JPanel to handle drawing the nodes of the tree
 public class NodePanel extends JPanel {
-  private NodeInfoList list;
-  private final int SHAPE_SIZE;
-  private final int HALF_SIZE;
+  private Tree<Character> tree;
 
-  /**
-   * Constructor creates a NodePanel object
-   * 
-   * @param list the NodeInfoList containing all the NodeInfo’s to use
-   * @param size the size of the shape’s to use in drawing
-   */
-  public NodePanel(NodeInfoList list, int size) {
-    this.list = list;
-    SHAPE_SIZE = size;
-    HALF_SIZE = (int) size / 2;
+  private static final int NODE_WIDTH = 20;
+  private static final int NODE_HEIGHT = 20;
+
+  public NodePanel(Tree<Character> tree) {
+    this.tree = tree;
   }
 
-  /**
-   * Overrides JPanel’s paint to draw the tree’s nodes
-   * 
-   * @param g the Graphics object to draw on
-   */
-  public void paint(Graphics g) {
-    ListIterator<NodeInfo> it = list.listIterator(0);
-    int num;
-
-    // iterate through list, drawing nodes
-    while (it.hasNext()) {
-      num = it.next().num();
-
-      // (http://www.wvutech.edu/mclark/Data%20Structures/Assignments%202004/Extra%20Credit%20Assignment.htm)
-      draw(num, num * 2, g);
-      draw(num, (num * 2) + 1, g);
-    }
+  public void paint(Graphics graphics) {
+    Node<Character> root = (Node<Character>)tree.getRoot();
+    drawNode(graphics, NODE_WIDTH, NODE_HEIGHT, root);
   }
 
-  /**
-   * This method does the actual drawing of the nodes
-   * 
-   * @param from the int value of which NodeInfo’s number to draw from
-   * @param to the int value of which NodeInfo’s number to draw to
-   * @param g the Graphics object to draw on
-   */
-  private void draw(int from, int to, Graphics g) {
-    NodeInfo parent = list.get(from);
-    NodeInfo child = list.get(to);
-
-    if (child == null)
+  private void drawNode(Graphics graphics, int x, int y, Node<Character> node) {
+    if(null == node) {
       return;
+    }
 
-    int x1 = parent.x() * SHAPE_SIZE + SHAPE_SIZE;
-    int y1 = parent.y() * SHAPE_SIZE + SHAPE_SIZE;
-    int x2 = child.x() * SHAPE_SIZE + SHAPE_SIZE;
-    int y2 = child.y() * SHAPE_SIZE + SHAPE_SIZE;
+    int height = tree.height(node);
+    int blanks = (int) Math.pow(2, height);
+    char ch = node.getValue();
 
-    g.setColor(Color.BLACK);
-    g.drawLine(x1, y1, x2, y2);
+    if(('|' == ch) || ('-' == ch)) {
+      // draw circle
+      graphics.setColor(Color.YELLOW);
+      graphics.fillOval(x + (blanks * NODE_WIDTH), y, NODE_WIDTH, NODE_HEIGHT);
+      // fillOval(int x, int y, int width, int height)
 
-    if (Tree.isCut(parent.ch()))
-      drawCircle("" + parent.ch(), x1, y1, g);
-    else
-      drawSquare("" + parent.ch(), x1, y1, g);
+      graphics.setColor(Color.BLACK);
+      graphics.drawOval(x + (blanks * NODE_WIDTH), y, NODE_WIDTH, NODE_HEIGHT);
+      // drawOval(int x, int y, int width, int height)
+    }
+    else {
+      // drawSquare
+      graphics.setColor(Color.GREEN);
+      graphics.fillRect(x + (blanks * NODE_WIDTH), y, NODE_WIDTH, NODE_HEIGHT);
+      // fillRect(int x, int y, int width, int height)
 
-    if (Tree.isCut(child.ch()))
-      drawCircle("" + child.ch(), x2, y2, g);
-    else
-      drawSquare("" + child.ch(), x2, y2, g);
-  }
+      graphics.setColor(Color.BLACK);
+      graphics.drawRect(x + (blanks * NODE_WIDTH), y, NODE_WIDTH, NODE_HEIGHT);
+      // drawRect(int x, int y, int width, int height)
+    }
 
-  /**
-   * Method draws a filled in green square around the specified coordinate And
-   * then places a string in the middle of square
-   * 
-   * @param str the String to be placed in middle of square
-   * @param x the x-coordinate of square’s top left corner
-   * @param y the y-coordinate of square’s top left corner
-   * @param g the Graphics object to draw on
-   */
-  private void drawSquare(String str, int x, int y, Graphics g) {
-    g.setColor(Color.GREEN);
-    g.fillRect(x - HALF_SIZE, y - HALF_SIZE, SHAPE_SIZE, SHAPE_SIZE);
+    // determine font and line spacing dimensions
+    FontMetrics fontMetric = graphics.getFontMetrics();
+    int charWidth = fontMetric.charWidth('X'); // 7
+    int ascent = fontMetric.getAscent(); // 13
 
-    g.setColor(Color.BLACK);
-    g.drawRect(x - HALF_SIZE, y - HALF_SIZE, SHAPE_SIZE, SHAPE_SIZE);
+    graphics.drawString("" + node.getValue(), x + (blanks * NODE_WIDTH) + charWidth, y + ascent);
 
-    g.drawString(str, x, y);
-  }
-
-  /**
-   * Method draws a filled in yellow circle around the specified coordinate And
-   * then places a string in the middle of circle
-   * 
-   * @param str the String to be placed in middle of circle
-   * @param x the x-coordinate of circle’s top left corner
-   * @param y the y-coordinate of circle’s top left corner
-   * @param g the Graphics object to draw on
-   */
-  private void drawCircle(String str, int x, int y, Graphics g) {
-    g.setColor(Color.YELLOW);
-    g.fillOval(x - HALF_SIZE, y - HALF_SIZE, SHAPE_SIZE, SHAPE_SIZE);
-
-    g.setColor(Color.BLACK);
-    g.drawOval(x - HALF_SIZE, y - HALF_SIZE, SHAPE_SIZE, SHAPE_SIZE);
-
-    g.drawString(str, x, y);
+    drawNode(graphics, x, y + (NODE_HEIGHT * 2), node.getLeftChild());
+    drawNode(graphics, x + (blanks * NODE_WIDTH), y + (NODE_HEIGHT * 2), node.getRightChild());
   }
 
   // tests the drawing of nodes
   public static void main(String[] args) {
-    Tree tree = new Tree();
-    String str = "|-AB-|C-EFD";
-
-    for (int i = 0; i < str.length(); i++) {
-      tree.add(str.charAt(i));
-    }
-
-    JPanel panel = new NodePanel(tree.getNodeInfoList(), 25);
+    Tree<Character> tree = FloorPlanReader.buildTree("|-AB-|C-EFD");
+    NodePanel panel = new NodePanel(tree);
 
     JFrame frame = new JFrame("Drawing Nodes test");
     frame.setContentPane(panel);
