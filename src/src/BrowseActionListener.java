@@ -28,7 +28,7 @@ public class BrowseActionListener implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent actionEvent) {
-    JFileChooser fileChooser = new JFileChooser();
+    JFileChooser fileChooser = new JFileChooser("./other");
 
     if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
       textField.setText(fileChooser.getSelectedFile().toString());
