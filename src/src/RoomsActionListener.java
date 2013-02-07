@@ -9,7 +9,10 @@ import javax.swing.JFrame;
 
 import tree.binary.Tree;
 
-// Handles the drawing of the rooms as is described by the text file.
+/*
+ *  Handles the drawing of the rooms as is described by the text file.
+ *  @author Todd Gerspacher
+ */
 public class RoomsActionListener implements ActionListener {
 
   private Tree<Character> tree;

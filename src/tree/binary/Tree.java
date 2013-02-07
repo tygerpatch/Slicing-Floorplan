@@ -1,5 +1,8 @@
 package tree.binary;
 
+/*
+ * @author Todd Gerspacher
+ */
 public class Tree<E> extends tree.general.Tree<E> {
 
   public String inorder() {

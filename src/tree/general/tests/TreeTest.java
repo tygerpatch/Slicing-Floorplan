@@ -8,6 +8,9 @@ import org.junit.Test;
 import tree.general.Tree;
 import tree.general.Node;
 
+/*
+ * @author Todd Gerspacher
+ */
 public class TreeTest {
 
   @Test

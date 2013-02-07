@@ -9,7 +9,10 @@ import javax.swing.JFrame;
 
 import tree.binary.Tree;
 
-// Handles drawing of the nodes in the tree in a JFrame.
+/*
+ *  Handles drawing of the nodes in the tree in a JFrame.
+ *  @author Todd Gerspacher
+ */
 public class NodesActionListener implements ActionListener {
 
   private Tree<Character> tree;

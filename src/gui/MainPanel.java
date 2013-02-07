@@ -14,7 +14,7 @@ import javax.swing.JTextField;
  * This class does not perform any actions.
  * It is just a GUI for letting the user choose the floor plan file.
  * Also has buttons for showing Rooms and Nodes
- * @author Todd
+ * @author Todd Gerspacher
  */
 public class MainPanel extends JPanel {
   private JTextField txtField;

@@ -5,6 +5,9 @@ import java.util.Stack;
 import tree.binary.Tree;
 import tree.binary.Node;
 
+/*
+ * @author Todd Gerspacher
+ */
 public class FloorPlanReader {
   public static Tree<Character> buildTree(String str) {
     char ch;

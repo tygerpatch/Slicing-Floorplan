@@ -13,6 +13,9 @@ import javax.swing.JTextField;
 
 import tree.binary.Tree;
 
+/*
+ * @author Todd Gerspacher
+ */
 public class BrowseActionListener implements ActionListener {
 
   private JTextField textField;

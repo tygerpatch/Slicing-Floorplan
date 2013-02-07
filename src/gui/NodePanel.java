@@ -12,7 +12,10 @@ import src.FloorPlanReader;
 import tree.binary.Node;
 import tree.binary.Tree;
 
-// This class extends from JPanel to handle drawing the nodes of the tree
+/*
+ *  This class extends from JPanel to handle drawing the nodes of the tree
+ *  @author Todd Gerspacher
+ */
 public class NodePanel extends JPanel {
   private Tree<Character> tree;
 

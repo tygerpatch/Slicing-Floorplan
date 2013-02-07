@@ -1,5 +1,8 @@
 package tree.general;
 
+/*
+ * @author Todd Gerspacher
+ */
 public class Tree<E> {
   // Allow subclasses to work with root.  That way they can customize GeneralTree methods.
   protected Node<E> root;

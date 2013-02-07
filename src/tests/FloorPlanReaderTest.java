@@ -7,6 +7,9 @@ import org.junit.Test;
 
 import src.FloorPlanReader;
 
+/*
+ * @author Todd Gerspacher
+ */
 public class FloorPlanReaderTest {
 
   @Test

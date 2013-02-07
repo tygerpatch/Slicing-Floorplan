@@ -9,6 +9,9 @@ import org.junit.Test;
 
 import tree.general.Node;
 
+/*
+ * @author Todd Gerspacher
+ */
 public class NodeTest {
 
   @Test

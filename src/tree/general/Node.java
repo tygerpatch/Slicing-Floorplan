@@ -3,7 +3,9 @@ package tree.general;
 import java.util.LinkedList;
 import java.util.List;
 
-//@author Todd Gerspacher
+/*
+ * @author Todd Gerspacher
+ */
 public class Node<E> {
 
   protected Node<E> parent;

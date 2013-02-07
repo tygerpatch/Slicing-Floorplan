@@ -1,5 +1,8 @@
 package tree.binary;
 
+/*
+ * @author Todd Gerspacher
+ */
 public class Node<E> extends tree.general.Node<E> {
 
   // Keep references to children for quick access.
