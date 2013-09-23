@@ -2,21 +2,21 @@ package src;
 
 import java.util.Stack;
 
-import tree.binary.Tree;
-import tree.binary.Node;
+import tree.binary.BinaryTree;
+import tree.binary.BinaryTreeNode;
 
 /*
  * @author Todd Gerspacher
  */
 public class FloorPlanReader {
-  public static Tree<Character> buildTree(String str) {
+  public static BinaryTree<Character> buildTree(String str) {
     char ch;
-    Node<Character> curr = null;
-    Node<Character> node = null;
-    Stack<Node<Character>> stack = new Stack<Node<Character>>();
+    BinaryTreeNode<Character> curr = null;
+    BinaryTreeNode<Character> node = null;
+    Stack<BinaryTreeNode<Character>> stack = new Stack<BinaryTreeNode<Character>>();
     for(int i = 0; i < str.length(); i++) {
       ch = str.charAt(i);
-      node = new Node<Character>();
+      node = new BinaryTreeNode<Character>();
       node.setValue(ch);
       if(null == curr) {
         curr = node;
@@ -37,8 +37,8 @@ public class FloorPlanReader {
         }
       }
     }
-    Node<Character> root = stack.size() > 0 ? stack.pop() : curr;
-    Tree<Character> tree = new Tree<Character>();
+    BinaryTreeNode<Character> root = stack.size() > 0 ? stack.pop() : curr;
+    BinaryTree<Character> tree = new BinaryTree<Character>();
     tree.setRoot(root);
 
     return tree;

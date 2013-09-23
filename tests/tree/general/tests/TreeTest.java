@@ -5,8 +5,8 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-import tree.general.Tree;
-import tree.general.Node;
+import tree.general.GeneralTree;
+import tree.general.GeneralTreeNode;
 
 /*
  * @author Todd Gerspacher
@@ -15,8 +15,8 @@ public class TreeTest {
 
   @Test
   public void testGetSetRoot() {
-    Node<String> root = new Node<String>();
-    Tree<String> tree = new Tree<String>();
+    GeneralTreeNode<String> root = new GeneralTreeNode<String>();
+    GeneralTree<String> tree = new GeneralTree<String>();
 
     assertThat(null == tree.getRoot(), is(true));
 
@@ -26,14 +26,14 @@ public class TreeTest {
 
   @Test
   public void testDepth() {
-    Node<String> root = new Node<String>();
-    Node<String> child = new Node<String>();
-    Node<String> grandchild = new Node<String>();
+    GeneralTreeNode<String> root = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> child = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> grandchild = new GeneralTreeNode<String>();
 
     root.addChild(child);
     child.addChild(grandchild);
 
-    Tree<String> tree = new Tree<String>();
+    GeneralTree<String> tree = new GeneralTree<String>();
     tree.setRoot(root);
 
     assertThat(tree.depth(root), is(0));
@@ -43,15 +43,15 @@ public class TreeTest {
 
   @Test
   public void testLevel() {
-    Node<String> A = new Node<String>();
-    Node<String> B = new Node<String>();
-    Node<String> C = new Node<String>();
-    Node<String> D = new Node<String>();
-    Node<String> E = new Node<String>();
-    Node<String> F = new Node<String>();
-    Node<String> G = new Node<String>();
-    Node<String> H = new Node<String>();
-    Node<String> I = new Node<String>();
+    GeneralTreeNode<String> A = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> B = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> C = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> D = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> E = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> F = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> G = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> H = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> I = new GeneralTreeNode<String>();
 
     A.addChild(B);
     A.addChild(C);
@@ -66,7 +66,7 @@ public class TreeTest {
     F.addChild(H);
     F.addChild(I);
 
-    Tree<String> tree = new Tree<String>();
+    GeneralTree<String> tree = new GeneralTree<String>();
     tree.setRoot(A);
 
     assertThat(tree.level(A), is(0));
@@ -85,20 +85,20 @@ public class TreeTest {
 
   @Test
   public void testHeight() {
-    Node<String> parent = new Node<String>();
-    Node<String> daughter = new Node<String>();
-    Node<String> son = new Node<String>();
+    GeneralTreeNode<String> parent = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> daughter = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> son = new GeneralTreeNode<String>();
 
     parent.addChild(son);
     parent.addChild(daughter);
 
-    Node<String> grandSon = new Node<String>();
-    Node<String> grandDaughter = new Node<String>();
+    GeneralTreeNode<String> grandSon = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> grandDaughter = new GeneralTreeNode<String>();
 
     daughter.addChild(grandSon);
     daughter.addChild(grandDaughter);
 
-    Tree<String> tree = new Tree<String>();
+    GeneralTree<String> tree = new GeneralTree<String>();
     tree.setRoot(parent);
 
     assertThat(tree.height(parent), is(2));
@@ -110,13 +110,13 @@ public class TreeTest {
 
   @Test
   public void testPreorder() {
-    Node<String> R = new Node<String>("R");
-    Node<String> A = new Node<String>("A");
-    Node<String> B = new Node<String>("B");
-    Node<String> C = new Node<String>("C");
-    Node<String> D = new Node<String>("D");
-    Node<String> E = new Node<String>("E");
-    Node<String> F = new Node<String>("F");
+    GeneralTreeNode<String> R = new GeneralTreeNode<String>("R");
+    GeneralTreeNode<String> A = new GeneralTreeNode<String>("A");
+    GeneralTreeNode<String> B = new GeneralTreeNode<String>("B");
+    GeneralTreeNode<String> C = new GeneralTreeNode<String>("C");
+    GeneralTreeNode<String> D = new GeneralTreeNode<String>("D");
+    GeneralTreeNode<String> E = new GeneralTreeNode<String>("E");
+    GeneralTreeNode<String> F = new GeneralTreeNode<String>("F");
 
     A.addChild(C);
     A.addChild(D);
@@ -127,7 +127,7 @@ public class TreeTest {
     R.addChild(A);
     R.addChild(B);
 
-    Tree<String> tree = new Tree<String>();
+    GeneralTree<String> tree = new GeneralTree<String>();
     tree.setRoot(R);
 
     assertThat(tree.preorder(), is("RACDEBF"));
@@ -135,13 +135,13 @@ public class TreeTest {
 
   @Test
   public void testPostorder() {
-    Node<String> R = new Node<String>("R");
-    Node<String> A = new Node<String>("A");
-    Node<String> B = new Node<String>("B");
-    Node<String> C = new Node<String>("C");
-    Node<String> D = new Node<String>("D");
-    Node<String> E = new Node<String>("E");
-    Node<String> F = new Node<String>("F");
+    GeneralTreeNode<String> R = new GeneralTreeNode<String>("R");
+    GeneralTreeNode<String> A = new GeneralTreeNode<String>("A");
+    GeneralTreeNode<String> B = new GeneralTreeNode<String>("B");
+    GeneralTreeNode<String> C = new GeneralTreeNode<String>("C");
+    GeneralTreeNode<String> D = new GeneralTreeNode<String>("D");
+    GeneralTreeNode<String> E = new GeneralTreeNode<String>("E");
+    GeneralTreeNode<String> F = new GeneralTreeNode<String>("F");
 
     A.addChild(C);
     A.addChild(D);
@@ -152,7 +152,7 @@ public class TreeTest {
     R.addChild(A);
     R.addChild(B);
 
-    Tree<String> tree = new Tree<String>();
+    GeneralTree<String> tree = new GeneralTree<String>();
     tree.setRoot(R);
 
     assertThat(tree.postorder(), is("CDEAFBR"));

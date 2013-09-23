@@ -6,7 +6,7 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import tree.binary.Node;
+import tree.binary.BinaryTreeNode;
 
 /*
  * @author Todd Gerspacher
@@ -15,14 +15,14 @@ public class NodeTest {
 
   @Test
   public void testSetRightChild() {
-    Node<String> parent = new Node<String>();
-    Node<String> rightChild = new Node<String>();
+    BinaryTreeNode<String> parent = new BinaryTreeNode<String>();
+    BinaryTreeNode<String> rightChild = new BinaryTreeNode<String>();
 
     parent.setRightChild(rightChild);
     assertThat(parent.getRightChild(), is(rightChild));
     assertThat(parent.getChildren().size(), is(1));
 
-    Node<String> leftChild = new Node<String>();
+    BinaryTreeNode<String> leftChild = new BinaryTreeNode<String>();
     parent.setRightChild(leftChild);
     assertThat(parent.getRightChild(), is(leftChild));
     assertThat(parent.getChildren().size(), is(1));
@@ -30,15 +30,15 @@ public class NodeTest {
 
   @Test
   public void testSetLeftChild() {
-    Node<String> parent = new Node<String>();
-    Node<String> leftChild = new Node<String>();
+    BinaryTreeNode<String> parent = new BinaryTreeNode<String>();
+    BinaryTreeNode<String> leftChild = new BinaryTreeNode<String>();
 
     parent.setLeftChild(leftChild);
 
     assertThat(parent.getLeftChild(), is(leftChild));
     assertThat(parent.getChildren().size(), is(1));
 
-    Node<String> rightChild = new Node<String>();
+    BinaryTreeNode<String> rightChild = new BinaryTreeNode<String>();
     parent.setLeftChild(rightChild);
 
     assertThat(parent.getLeftChild(), is(rightChild));
@@ -47,8 +47,8 @@ public class NodeTest {
 
   @Test
   public void testAddChild() {
-    Node<String> parent = new Node<String>();
-    Node<String> child = new Node<String>();
+    BinaryTreeNode<String> parent = new BinaryTreeNode<String>();
+    BinaryTreeNode<String> child = new BinaryTreeNode<String>();
 
     try {
       parent.addChild(child);
@@ -61,9 +61,9 @@ public class NodeTest {
 
   @Test
   public void testRemoveChild() {
-    Node<String> parent = new Node<String>();
-    Node<String> leftChild = new Node<String>();
-    Node<String> rightChild = new Node<String>();
+    BinaryTreeNode<String> parent = new BinaryTreeNode<String>();
+    BinaryTreeNode<String> leftChild = new BinaryTreeNode<String>();
+    BinaryTreeNode<String> rightChild = new BinaryTreeNode<String>();
 
     parent.setLeftChild(leftChild);
     parent.setRightChild(rightChild);

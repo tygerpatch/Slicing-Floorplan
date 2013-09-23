@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import tree.general.Node;
+import tree.general.GeneralTreeNode;
 
 /*
  * @author Todd Gerspacher
@@ -16,22 +16,22 @@ public class NodeTest {
 
   @Test
   public void testAddChild() {
-    Node<String> root = new Node<String>();
-    Node<String> child = new Node<String>();
+    GeneralTreeNode<String> root = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> child = new GeneralTreeNode<String>();
 
     root.addChild(child);
 
     assertThat(child.getParent(), is(root));
 
-    List<Node<String>> children = root.getChildren();
+    List<GeneralTreeNode<String>> children = root.getChildren();
     assertThat(children.size(), is(1));
     assertThat(children.get(0), is(child));
   }
 
   @Test
   public void testRemoveChild() {
-    Node<String> root = new Node<String>();
-    Node<String> child = new Node<String>();
+    GeneralTreeNode<String> root = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> child = new GeneralTreeNode<String>();
 
     assertThat(root.removeChild(child), is(false));
 
@@ -44,9 +44,9 @@ public class NodeTest {
 
   @Test
   public void testIsSiblingOf() {
-    Node<String> root = new Node<String>();
-    Node<String> firstChild = new Node<String>();
-    Node<String> secondChild = new Node<String>();
+    GeneralTreeNode<String> root = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> firstChild = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> secondChild = new GeneralTreeNode<String>();
 
     root.addChild(firstChild);
     root.addChild(secondChild);
@@ -59,8 +59,8 @@ public class NodeTest {
 
   @Test
   public void testIsExternal() {
-    Node<String> root = new Node<String>();
-    Node<String> child = new Node<String>();
+    GeneralTreeNode<String> root = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> child = new GeneralTreeNode<String>();
 
     root.addChild(child);
 
@@ -70,8 +70,8 @@ public class NodeTest {
 
   @Test
   public void testIsInternal() {
-    Node<String> root = new Node<String>();
-    Node<String> child = new Node<String>();
+    GeneralTreeNode<String> root = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> child = new GeneralTreeNode<String>();
 
     root.addChild(child);
 
@@ -81,8 +81,8 @@ public class NodeTest {
 
   @Test
   public void testIsLeaf() {
-    Node<String> root = new Node<String>();
-    Node<String> child = new Node<String>();
+    GeneralTreeNode<String> root = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> child = new GeneralTreeNode<String>();
 
     root.addChild(child);
 
@@ -92,8 +92,8 @@ public class NodeTest {
 
   @Test
   public void testIsAncestorOf() {
-    Node<String> root = new Node<String>();
-    Node<String> child = new Node<String>();
+    GeneralTreeNode<String> root = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> child = new GeneralTreeNode<String>();
 
     root.addChild(child);
 
@@ -106,8 +106,8 @@ public class NodeTest {
 
   @Test
   public void testIsDescendentOf() {
-    Node<String> root = new Node<String>();
-    Node<String> child = new Node<String>();
+    GeneralTreeNode<String> root = new GeneralTreeNode<String>();
+    GeneralTreeNode<String> child = new GeneralTreeNode<String>();
 
     root.addChild(child);
 

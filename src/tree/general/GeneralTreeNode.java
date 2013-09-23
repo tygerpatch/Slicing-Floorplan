@@ -6,15 +6,15 @@ import java.util.List;
 /*
  * @author Todd Gerspacher
  */
-public class Node<E> {
+public class GeneralTreeNode<E> {
 
-  protected Node<E> parent;
+  protected GeneralTreeNode<E> parent;
 
-  public void setParent(Node<E> node) {
+  public void setParent(GeneralTreeNode<E> node) {
     parent = node;
   }
 
-  public Node<E> getParent() {
+  public GeneralTreeNode<E> getParent() {
     return parent;
   }
 
@@ -28,21 +28,21 @@ public class Node<E> {
     return value;
   }
 
-  public Node() {
+  public GeneralTreeNode() {
   }
 
-  public Node(E value) {
+  public GeneralTreeNode(E value) {
     this.value = value;
   }
 
-  protected List<Node<E>> children = new LinkedList<Node<E>>();
+  protected List<GeneralTreeNode<E>> children = new LinkedList<GeneralTreeNode<E>>();
 
-  public void addChild(Node<E> node) {
+  public void addChild(GeneralTreeNode<E> node) {
     children.add(node);
     node.setParent(this);
   }
 
-  public boolean removeChild(Node<E> node) {
+  public boolean removeChild(GeneralTreeNode<E> node) {
     if(children.remove(node)) {
       node.setParent(null);
       return true;
@@ -51,12 +51,12 @@ public class Node<E> {
     return false;
   }
 
-  public List<Node<E>> getChildren() {
+  public List<GeneralTreeNode<E>> getChildren() {
     return children;
   }
 
   // "Two nodes that are children of the same parent are siblings."
-  public boolean isSiblingOf(Node<E> node) {
+  public boolean isSiblingOf(GeneralTreeNode<E> node) {
     return (this.parent == node.parent);
   }
 
@@ -76,12 +76,12 @@ public class Node<E> {
   }
 
   // "A node u is an ancestor of a node v if u = v or u is an ancestor of the parent of v."
-  public boolean isAncestorOf(Node<E> node) {
+  public boolean isAncestorOf(GeneralTreeNode<E> node) {
     return ((this == node) || (this == node.getParent()));
   }
 
   // If node u is an ancestor of node v, then v is a descendent of u.
-  public boolean isDescendentOf(Node<E> node) {
+  public boolean isDescendentOf(GeneralTreeNode<E> node) {
     return node.isAncestorOf(this);
   }
 }

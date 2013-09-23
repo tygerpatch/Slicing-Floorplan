@@ -5,8 +5,8 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-import tree.binary.Node;
-import tree.binary.Tree;
+import tree.binary.BinaryTreeNode;
+import tree.binary.BinaryTree;
 
 /*
  * @author Todd Gerspacher
@@ -15,15 +15,15 @@ public class TreeTest {
 
   @Test
   public void testInorder() {
-    Node<String> A = new Node<String>("A");
-    Node<String> B = new Node<String>("B");
-    Node<String> C = new Node<String>("C");
-    Node<String> D = new Node<String>("D");
-    Node<String> E = new Node<String>("E");
-    Node<String> F = new Node<String>("F");
-    Node<String> G = new Node<String>("G");
-    Node<String> H = new Node<String>("H");
-    Node<String> I = new Node<String>("I");
+    BinaryTreeNode<String> A = new BinaryTreeNode<String>("A");
+    BinaryTreeNode<String> B = new BinaryTreeNode<String>("B");
+    BinaryTreeNode<String> C = new BinaryTreeNode<String>("C");
+    BinaryTreeNode<String> D = new BinaryTreeNode<String>("D");
+    BinaryTreeNode<String> E = new BinaryTreeNode<String>("E");
+    BinaryTreeNode<String> F = new BinaryTreeNode<String>("F");
+    BinaryTreeNode<String> G = new BinaryTreeNode<String>("G");
+    BinaryTreeNode<String> H = new BinaryTreeNode<String>("H");
+    BinaryTreeNode<String> I = new BinaryTreeNode<String>("I");
 
     A.setLeftChild(B);
     A.setRightChild(C);
@@ -38,7 +38,7 @@ public class TreeTest {
     F.setLeftChild(H);
     F.setRightChild(I);
 
-    Tree<String> tree = new Tree<String>();
+    BinaryTree<String> tree = new BinaryTree<String>();
     tree.setRoot(A);
 
     assertThat(tree.inorder(), is("BDAGECHFI"));

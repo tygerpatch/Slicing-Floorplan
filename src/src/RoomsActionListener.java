@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import tree.binary.Tree;
+import tree.binary.BinaryTree;
 
 /*
  *  Handles the drawing of the rooms as is described by the text file.
@@ -52,7 +52,7 @@ public class RoomsActionListener implements ActionListener {
         return;
       }
 
-      Tree<Character> tree = FloorPlanReader.buildTree(readLine);
+      BinaryTree<Character> tree = FloorPlanReader.buildTree(readLine);
       
       JFrame frame = new JFrame("Rooms");
       frame.setContentPane(new RoomPanel(tree));

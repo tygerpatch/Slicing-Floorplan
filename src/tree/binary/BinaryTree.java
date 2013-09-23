@@ -3,13 +3,13 @@ package tree.binary;
 /*
  * @author Todd Gerspacher
  */
-public class Tree<E> extends tree.general.Tree<E> {
+public class BinaryTree<E> extends tree.general.GeneralTree<E> {
 
   public String inorder() {
-    return inorder((tree.binary.Node<E>)root);
+    return inorder((tree.binary.BinaryTreeNode<E>)root);
   }
 
-  private String inorder(tree.binary.Node<E> node) {
+  private String inorder(tree.binary.BinaryTreeNode<E> node) {
     StringBuilder stringBuilder = new StringBuilder();
 
     if(null != node) {

@@ -3,28 +3,28 @@ package tree.binary;
 /*
  * @author Todd Gerspacher
  */
-public class Node<E> extends tree.general.Node<E> {
+public class BinaryTreeNode<E> extends tree.general.GeneralTreeNode<E> {
 
   // Keep references to children for quick access.
-  private tree.binary.Node<E> leftChild;
-  private tree.binary.Node<E> rightChild;
+  private tree.binary.BinaryTreeNode<E> leftChild;
+  private tree.binary.BinaryTreeNode<E> rightChild;
 
-  public Node() {
+  public BinaryTreeNode() {
   }
 
-  public Node(E value) {
+  public BinaryTreeNode(E value) {
     this.value = value;
   }
   
   @Override
-  public void addChild(tree.general.Node<E> node) {
+  public void addChild(tree.general.GeneralTreeNode<E> node) {
     throw new UnsupportedOperationException("For Binary Trees, you must use either setLeftChild or setRightChild.");
     // Make it the user's responsibility to put child nodes in proper place.
     // That is, it's ambiguous which subtree a grandchild should go.
   }
 
   @Override
-  public boolean removeChild(tree.general.Node<E> node) {
+  public boolean removeChild(tree.general.GeneralTreeNode<E> node) {
     super.removeChild(node);
     
     if(leftChild == node) {
@@ -40,11 +40,11 @@ public class Node<E> extends tree.general.Node<E> {
     return false;
   }
   
-  public tree.binary.Node<E> getLeftChild() {
+  public tree.binary.BinaryTreeNode<E> getLeftChild() {
     return leftChild;
   }
 
-  public void setLeftChild(tree.binary.Node<E> node) {
+  public void setLeftChild(tree.binary.BinaryTreeNode<E> node) {
     if(leftChild != null) {
       children.remove(leftChild);
     }
@@ -53,11 +53,11 @@ public class Node<E> extends tree.general.Node<E> {
     leftChild = node;
   }
 
-  public tree.binary.Node<E> getRightChild() {
+  public tree.binary.BinaryTreeNode<E> getRightChild() {
     return rightChild;
   }
 
-  public void setRightChild(tree.binary.Node<E> node) {
+  public void setRightChild(tree.binary.BinaryTreeNode<E> node) {
     if(rightChild != null) {
       children.remove(rightChild);
     }

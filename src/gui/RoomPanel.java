@@ -10,15 +10,15 @@ import javax.swing.JPanel;
 
 import net.datastructures.NodeQueue;
 import src.FloorPlanReader;
-import tree.binary.Tree;
-import tree.binary.Node;
+import tree.binary.BinaryTree;
+import tree.binary.BinaryTreeNode;
 
 /**
  * This class extends from JPanel to handle the drawing of rooms
  * @author Todd Gerpacher
  */
 public class RoomPanel extends JPanel {
-  private Tree<Character> tree;
+  private BinaryTree<Character> tree;
   private NodeQueue<Rectangle> queue; // used in drawing the rooms
 
   /**
@@ -27,7 +27,7 @@ public class RoomPanel extends JPanel {
    * @param tree
    *          the Tree to use when drawing the rooms
    */
-  public RoomPanel(Tree<Character> tree) {
+  public RoomPanel(BinaryTree<Character> tree) {
     this.tree = tree;
   }
 
@@ -61,7 +61,7 @@ public class RoomPanel extends JPanel {
     queue = new NodeQueue<Rectangle>();
     queue.enqueue(new Rectangle(x, y, width, height));
 
-    drawRooms((Node<Character>)tree.getRoot(), g);
+    drawRooms((BinaryTreeNode<Character>)tree.getRoot(), g);
   }
 
   /**
@@ -72,7 +72,7 @@ public class RoomPanel extends JPanel {
    * @param g
    *          the Graphics2D object to draw on
    */
-  private void drawRooms(Node<Character> node, Graphics2D g) {
+  private void drawRooms(BinaryTreeNode<Character> node, Graphics2D g) {
     switch (node.getValue()) {
       case '|':
         drawVerticalCut();
@@ -163,7 +163,7 @@ public class RoomPanel extends JPanel {
    * @param g
    *          the Graphics2D object to draw on
    */
-  private void drawRoom(Node<Character> node, Graphics2D g) {
+  private void drawRoom(BinaryTreeNode<Character> node, Graphics2D g) {
     Rectangle temp = (Rectangle) queue.dequeue();
 
     float x = (float) (temp.getX() + (temp.getWidth() / 2));
@@ -178,7 +178,7 @@ public class RoomPanel extends JPanel {
   }
 
   public static void main(String[] args) {
-    Tree<Character> tree = FloorPlanReader.buildTree("|-AB-|C-EFD");
+    BinaryTree<Character> tree = FloorPlanReader.buildTree("|-AB-|C-EFD");
     RoomPanel panel = new RoomPanel(tree);
     JFrame frame = new JFrame("FileChooserPanel");
     frame.setContentPane(panel);

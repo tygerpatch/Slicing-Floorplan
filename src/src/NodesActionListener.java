@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import tree.binary.Tree;
+import tree.binary.BinaryTree;
 
 /*
  *  Handles drawing of the nodes in the tree in a JFrame.
@@ -53,7 +53,7 @@ public class NodesActionListener implements ActionListener {
         return;
       }
 
-      Tree<Character> tree = FloorPlanReader.buildTree(readLine);
+      BinaryTree<Character> tree = FloorPlanReader.buildTree(readLine);
       
       JFrame frame = new JFrame("Nodes");
       frame.setContentPane(new NodePanel(tree));

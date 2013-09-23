@@ -9,30 +9,30 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import src.FloorPlanReader;
-import tree.binary.Node;
-import tree.binary.Tree;
+import tree.binary.BinaryTreeNode;
+import tree.binary.BinaryTree;
 
 /*
  *  This class extends from JPanel to handle drawing the nodes of the tree
  *  @author Todd Gerspacher
  */
 public class NodePanel extends JPanel {
-  private Tree<Character> tree;
+  private BinaryTree<Character> tree;
 
   private static final int NODE_WIDTH = 20;
   private static final int NODE_HEIGHT = 20;
 
-  public NodePanel(Tree<Character> tree) {
+  public NodePanel(BinaryTree<Character> tree) {
     this.tree = tree;
   }
 
   public void paint(Graphics graphics) {
-    Node<Character> root = (Node<Character>)tree.getRoot();
+    BinaryTreeNode<Character> root = (BinaryTreeNode<Character>)tree.getRoot();
     drawNode(graphics, 0, 0, root, null);
   }
 
   // Point is bottom of parent's node.  Used for drawing connector lines.
-  private void drawNode(Graphics graphics, int x, int y, Node<Character> node, Point point) {
+  private void drawNode(Graphics graphics, int x, int y, BinaryTreeNode<Character> node, Point point) {
     if(null == node) {
       return;
     }
@@ -82,7 +82,7 @@ public class NodePanel extends JPanel {
 
   // tests the drawing of nodes
   public static void main(String[] args) {
-    Tree<Character> tree = FloorPlanReader.buildTree("|-AB-|C-EFD");
+    BinaryTree<Character> tree = FloorPlanReader.buildTree("|-AB-|C-EFD");
     NodePanel panel = new NodePanel(tree);
 
     JFrame frame = new JFrame("Drawing Nodes test");
