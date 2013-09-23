@@ -15,7 +15,7 @@ public class BinaryTreeNode<E> extends tree.general.GeneralTreeNode<E> {
   public BinaryTreeNode(E value) {
     this.value = value;
   }
-  
+
   @Override
   public void addChild(tree.general.GeneralTreeNode<E> node) {
     throw new UnsupportedOperationException("For Binary Trees, you must use either setLeftChild or setRightChild.");
@@ -26,29 +26,29 @@ public class BinaryTreeNode<E> extends tree.general.GeneralTreeNode<E> {
   @Override
   public boolean removeChild(tree.general.GeneralTreeNode<E> node) {
     super.removeChild(node);
-    
-    if(leftChild == node) {
+
+    if (leftChild == node) {
       leftChild = null;
       return true;
     }
-    
-    if(rightChild == node) {
+
+    if (rightChild == node) {
       rightChild = null;
       return true;
     }
 
     return false;
   }
-  
+
   public tree.binary.BinaryTreeNode<E> getLeftChild() {
     return leftChild;
   }
 
   public void setLeftChild(tree.binary.BinaryTreeNode<E> node) {
-    if(leftChild != null) {
+    if (leftChild != null) {
       children.remove(leftChild);
     }
-    
+
     super.addChild(node);
     leftChild = node;
   }
@@ -58,11 +58,11 @@ public class BinaryTreeNode<E> extends tree.general.GeneralTreeNode<E> {
   }
 
   public void setRightChild(tree.binary.BinaryTreeNode<E> node) {
-    if(rightChild != null) {
+    if (rightChild != null) {
       children.remove(rightChild);
     }
-    
+
     super.addChild(node);
-    rightChild = node;    
+    rightChild = node;
   }
 }
