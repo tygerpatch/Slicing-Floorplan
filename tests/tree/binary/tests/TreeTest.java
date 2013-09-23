@@ -24,20 +24,20 @@ public class TreeTest {
     Node<String> G = new Node<String>("G");
     Node<String> H = new Node<String>("H");
     Node<String> I = new Node<String>("I");
-    
+
     A.setLeftChild(B);
     A.setRightChild(C);
-    
+
     B.setRightChild(D);
-    
+
     C.setLeftChild(E);
     C.setRightChild(F);
-    
+
     E.setLeftChild(G);
-    
+
     F.setLeftChild(H);
     F.setRightChild(I);
-    
+
     Tree<String> tree = new Tree<String>();
     tree.setRoot(A);
 

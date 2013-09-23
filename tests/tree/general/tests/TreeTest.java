@@ -17,13 +17,13 @@ public class TreeTest {
   public void testGetSetRoot() {
     Node<String> root = new Node<String>();
     Tree<String> tree = new Tree<String>();
-    
+
     assertThat(null == tree.getRoot(), is(true));
-    
+
     tree.setRoot(root);
     assertThat(tree.getRoot(), is(root));
   }
-  
+
   @Test
   public void testDepth() {
     Node<String> root = new Node<String>();
@@ -41,7 +41,7 @@ public class TreeTest {
     assertThat(tree.depth(grandchild), is(2));
   }
 
-  @Test 
+  @Test
   public void testLevel() {
     Node<String> A = new Node<String>();
     Node<String> B = new Node<String>();
@@ -52,32 +52,32 @@ public class TreeTest {
     Node<String> G = new Node<String>();
     Node<String> H = new Node<String>();
     Node<String> I = new Node<String>();
-    
+
     A.addChild(B);
     A.addChild(C);
-    
+
     B.addChild(D);
-    
+
     C.addChild(E);
     C.addChild(F);
-    
+
     E.addChild(G);
-    
+
     F.addChild(H);
     F.addChild(I);
-    
+
     Tree<String> tree = new Tree<String>();
     tree.setRoot(A);
 
     assertThat(tree.level(A), is(0));
-    
+
     assertThat(tree.level(B), is(1));
     assertThat(tree.level(C), is(1));
-    
+
     assertThat(tree.level(D), is(2));
     assertThat(tree.level(E), is(2));
     assertThat(tree.level(F), is(2));
-    
+
     assertThat(tree.level(G), is(3));
     assertThat(tree.level(H), is(3));
     assertThat(tree.level(I), is(3));
@@ -88,24 +88,24 @@ public class TreeTest {
     Node<String> parent = new Node<String>();
     Node<String> daughter = new Node<String>();
     Node<String> son = new Node<String>();
-    
+
     parent.addChild(son);
     parent.addChild(daughter);
-    
+
     Node<String> grandSon = new Node<String>();
     Node<String> grandDaughter = new Node<String>();
-    
+
     daughter.addChild(grandSon);
     daughter.addChild(grandDaughter);
-    
+
     Tree<String> tree = new Tree<String>();
     tree.setRoot(parent);
-  
+
     assertThat(tree.height(parent), is(2));
     assertThat(tree.height(son), is(0));
     assertThat(tree.height(daughter), is(1));
     assertThat(tree.height(grandSon), is(0));
-    assertThat(tree.height(grandDaughter), is(0));    
+    assertThat(tree.height(grandDaughter), is(0));
   }
 
   @Test
@@ -132,7 +132,7 @@ public class TreeTest {
 
     assertThat(tree.preorder(), is("RACDEBF"));
   }
-  
+
   @Test
   public void testPostorder() {
     Node<String> R = new Node<String>("R");
@@ -156,5 +156,5 @@ public class TreeTest {
     tree.setRoot(R);
 
     assertThat(tree.postorder(), is("CDEAFBR"));
-  }  
+  }
 }
