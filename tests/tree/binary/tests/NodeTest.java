@@ -6,7 +6,7 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import tree.binary.BinaryTreeNode;
+import tree.BinaryTreeNode;
 
 /*
  * @author Todd Gerspacher

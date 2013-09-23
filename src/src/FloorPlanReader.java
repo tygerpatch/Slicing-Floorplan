@@ -2,8 +2,8 @@ package src;
 
 import java.util.Stack;
 
-import tree.binary.BinaryTree;
-import tree.binary.BinaryTreeNode;
+import tree.BinaryTree;
+import tree.BinaryTreeNode;
 
 /*
  * @author Todd Gerspacher

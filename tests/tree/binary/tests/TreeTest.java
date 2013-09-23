@@ -5,8 +5,8 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-import tree.binary.BinaryTreeNode;
-import tree.binary.BinaryTree;
+import tree.BinaryTree;
+import tree.BinaryTreeNode;
 
 /*
  * @author Todd Gerspacher

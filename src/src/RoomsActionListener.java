@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import tree.binary.BinaryTree;
+import tree.BinaryTree;
 
 /*
  *  Handles the drawing of the rooms as is described by the text file.

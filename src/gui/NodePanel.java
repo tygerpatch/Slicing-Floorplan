@@ -9,8 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import src.FloorPlanReader;
-import tree.binary.BinaryTreeNode;
-import tree.binary.BinaryTree;
+import tree.BinaryTree;
+import tree.BinaryTreeNode;
 
 /*
  *  This class extends from JPanel to handle drawing the nodes of the tree

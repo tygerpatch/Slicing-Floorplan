@@ -1,13 +1,13 @@
-package tree.binary;
+package tree;
 
 /*
  * @author Todd Gerspacher
  */
-public class BinaryTreeNode<E> extends tree.general.GeneralTreeNode<E> {
+public class BinaryTreeNode<E> extends tree.GeneralTreeNode<E> {
 
   // Keep references to children for quick access.
-  private tree.binary.BinaryTreeNode<E> leftChild;
-  private tree.binary.BinaryTreeNode<E> rightChild;
+  private tree.BinaryTreeNode<E> leftChild;
+  private tree.BinaryTreeNode<E> rightChild;
 
   public BinaryTreeNode() {
   }
@@ -17,14 +17,14 @@ public class BinaryTreeNode<E> extends tree.general.GeneralTreeNode<E> {
   }
 
   @Override
-  public void addChild(tree.general.GeneralTreeNode<E> node) {
+  public void addChild(tree.GeneralTreeNode<E> node) {
     throw new UnsupportedOperationException("For Binary Trees, you must use either setLeftChild or setRightChild.");
     // Make it the user's responsibility to put child nodes in proper place.
     // That is, it's ambiguous which subtree a grandchild should go.
   }
 
   @Override
-  public boolean removeChild(tree.general.GeneralTreeNode<E> node) {
+  public boolean removeChild(tree.GeneralTreeNode<E> node) {
     super.removeChild(node);
 
     if (leftChild == node) {
@@ -40,11 +40,11 @@ public class BinaryTreeNode<E> extends tree.general.GeneralTreeNode<E> {
     return false;
   }
 
-  public tree.binary.BinaryTreeNode<E> getLeftChild() {
+  public tree.BinaryTreeNode<E> getLeftChild() {
     return leftChild;
   }
 
-  public void setLeftChild(tree.binary.BinaryTreeNode<E> node) {
+  public void setLeftChild(tree.BinaryTreeNode<E> node) {
     if (leftChild != null) {
       children.remove(leftChild);
     }
@@ -53,11 +53,11 @@ public class BinaryTreeNode<E> extends tree.general.GeneralTreeNode<E> {
     leftChild = node;
   }
 
-  public tree.binary.BinaryTreeNode<E> getRightChild() {
+  public tree.BinaryTreeNode<E> getRightChild() {
     return rightChild;
   }
 
-  public void setRightChild(tree.binary.BinaryTreeNode<E> node) {
+  public void setRightChild(tree.BinaryTreeNode<E> node) {
     if (rightChild != null) {
       children.remove(rightChild);
     }

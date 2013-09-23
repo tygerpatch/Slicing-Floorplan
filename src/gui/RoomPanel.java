@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 
 import net.datastructures.NodeQueue;
 import src.FloorPlanReader;
-import tree.binary.BinaryTree;
-import tree.binary.BinaryTreeNode;
+import tree.BinaryTree;
+import tree.BinaryTreeNode;
 
 /**
  * This class extends from JPanel to handle the drawing of rooms

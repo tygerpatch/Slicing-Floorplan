@@ -1,4 +1,4 @@
-package tree.general;
+package tree;
 
 /*
  * @author Todd Gerspacher

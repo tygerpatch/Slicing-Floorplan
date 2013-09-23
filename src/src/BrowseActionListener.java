@@ -11,7 +11,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import tree.binary.BinaryTree;
+import tree.BinaryTree;
 
 /*
  * @author Todd Gerspacher

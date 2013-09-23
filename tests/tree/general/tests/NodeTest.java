@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import tree.general.GeneralTreeNode;
+import tree.GeneralTreeNode;
 
 /*
  * @author Todd Gerspacher

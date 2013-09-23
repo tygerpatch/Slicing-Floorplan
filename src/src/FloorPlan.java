@@ -5,7 +5,7 @@ import gui.MainPanel;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-import tree.binary.BinaryTree;
+import tree.BinaryTree;
 
 /**
  * Program request text file containing floor plan to use.

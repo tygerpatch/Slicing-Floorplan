@@ -5,8 +5,8 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-import tree.general.GeneralTree;
-import tree.general.GeneralTreeNode;
+import tree.GeneralTree;
+import tree.GeneralTreeNode;
 
 /*
  * @author Todd Gerspacher
