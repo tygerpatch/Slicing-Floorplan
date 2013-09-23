@@ -5,8 +5,6 @@ import gui.MainPanel;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-import tree.BinaryTree;
-
 /**
  * Program request text file containing floor plan to use.
  * Floor plan is read in and stored as a binary tree.
@@ -23,7 +21,7 @@ public class FloorPlan {
     // Note: MainPanel has its own main method for testing how it looks.
     // Therefore I had to use a separate class.  Plus FloorPlan is more intuitive as a starting point for a project titled FloorPlan.
 
-    BinaryTree<Character> tree = new BinaryTree<Character>();
+    //BinaryTree<Character> tree = new BinaryTree<Character>();
     JTextField textField = mainPanel.getTxtField();
 
     mainPanel.setBrowseActionListener(new BrowseActionListener(textField));
