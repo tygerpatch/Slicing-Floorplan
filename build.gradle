@@ -1,0 +1,52 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+dependencies {
+	testCompile 'junit:junit:4.10'
+}
+
+sourceSets {
+	main {
+		java {
+			srcDirs "src"
+		}
+	}
+
+	test {
+		java {
+			srcDirs "tests"
+		}
+	}
+}
+
+task checkstyleReport(dependsOn: checkstyleMain) << {
+	ant.xslt(
+		basedir: "$buildDir/reports/checkstyle/",
+		destdir: "$buildDir/reports/checkstyle/",
+		style: "config/checkstyle/checkstyle-frames.xsl") {
+
+		param(name: "output.dir", expression:"$buildDir/reports/checkstyle/")
+            }
+}
+
+checkstyle {
+	ignoreFailures = true
+}
+
+tasks.withType(FindBugs){
+	ignoreFailures = true
+
+	reports {
+		xml.enabled = false
+		html.enabled = true
+	}
+}
+
