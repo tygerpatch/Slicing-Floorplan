@@ -1,7 +1,6 @@
 package src;
 
 import gui.NodePanel;
-import gui.RoomPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

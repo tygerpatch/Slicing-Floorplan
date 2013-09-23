@@ -21,7 +21,6 @@ public class FloorPlan {
     // Note: MainPanel has its own main method for testing how it looks.
     // Therefore I had to use a separate class.  Plus FloorPlan is more intuitive as a starting point for a project titled FloorPlan.
 
-    //BinaryTree<Character> tree = new BinaryTree<Character>();
     JTextField textField = mainPanel.getTxtField();
 
     mainPanel.setBrowseActionListener(new BrowseActionListener(textField));
