@@ -32,12 +32,15 @@ public class NodePanel extends JPanel {
   }
 
   // Point is bottom of parent's node.  Used for drawing connector lines.
-  private void drawNode(Graphics graphics, int x, int y, BinaryTreeNode<Character> node, Point point) {
+  private void drawNode(Graphics graphics, int x, int y,
+    BinaryTreeNode<Character> node, Point point) {
+
     if(null == node) {
       return;
     }
 
-    int blanks = (int) Math.pow(2, tree.height(node)); // used for spacing nodes evenly
+    // blanks is used for spacing nodes evenly
+    int blanks = (int) Math.pow(2, tree.height(node));
     char ch = node.getValue();
 
     if(('|' == ch) || ('-' == ch)) {
@@ -66,18 +69,22 @@ public class NodePanel extends JPanel {
     int charWidth = fontMetric.charWidth('X'); // 7
     int ascent = fontMetric.getAscent(); // 13
 
-    graphics.drawString("" + node.getValue(), x + (blanks * NODE_WIDTH) + charWidth, y + ascent);
+    graphics.drawString("" + node.getValue(),
+      x + (blanks * NODE_WIDTH) + charWidth, y + ascent);
 
     if(null != point) {
       graphics.setColor(Color.BLACK);
-      graphics.drawLine(x + (blanks * NODE_WIDTH) + (NODE_WIDTH/2), y, point.x, point.y);
+      graphics.drawLine(x + (blanks * NODE_WIDTH) + (NODE_WIDTH/2),
+        y, point.x, point.y);
     }
 
     // pass location of current node's bottom half
-    point = new Point(x + (blanks * NODE_WIDTH) + (NODE_WIDTH/2), y + NODE_HEIGHT);
+    point = new Point(x + (blanks * NODE_WIDTH) + (NODE_WIDTH/2),
+      y + NODE_HEIGHT);
 
     drawNode(graphics, x, y + (NODE_HEIGHT * 2), node.getLeftChild(), point);
-    drawNode(graphics, x + (blanks * NODE_WIDTH), y + (NODE_HEIGHT * 2), node.getRightChild(), point);
+    drawNode(graphics, x + (blanks * NODE_WIDTH), y + (NODE_HEIGHT * 2),
+      node.getRightChild(), point);
   }
 
   // tests the drawing of nodes
