@@ -4,7 +4,8 @@ package tree;
  * @author Todd Gerspacher
  */
 public class GeneralTree<E> {
-  // Allow subclasses to work with root.  That way they can customize GeneralTree methods.
+  // Allow subclasses to work with root.
+  // That way they can customize GeneralTree methods.
   protected GeneralTreeNode<E> root;
 
   public void setRoot(GeneralTreeNode<E> node) {
