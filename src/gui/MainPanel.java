@@ -41,10 +41,10 @@ public class MainPanel extends JPanel {
 
     JPanel drawPanel = new JPanel(new GridLayout(1, 5));
 
-    // this JButton will allow user to display the rooms as described by the given text file
+    // JButton to display the rooms as described by the given text file.
     rooms = new JButton("ROOMS");
 
-    // this JButton will allow user to display the nodes of the binary floor plan tree
+    // JButton to display the nodes of the binary floor plan tree.
     nodes = new JButton("NODES");
 
     drawPanel.add(new JLabel(""));
