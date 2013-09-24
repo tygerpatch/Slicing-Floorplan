@@ -114,10 +114,12 @@ public class RoomPanel extends JPanel {
     }
 
     // push the first half of room onto queue
-    queue.enqueue(new Rectangle((int) temp.getX(), (int) temp.getY(), newWidth, (int) temp.getHeight()));
+    queue.enqueue(new Rectangle((int) temp.getX(), (int) temp.getY(), newWidth,
+      (int) temp.getHeight()));
 
     // push the second half of room onto queue
-    queue.enqueue(new Rectangle((int) temp.getX() + newWidth, (int) temp.getY(), newWidth, (int) temp.getHeight()));
+    queue.enqueue(new Rectangle((int) temp.getX() + newWidth, (int) temp.getY(),
+      newWidth, (int) temp.getHeight()));
 
     // replace old rectangle shapes into queue
     while (!q.isEmpty()) {
@@ -143,10 +145,12 @@ public class RoomPanel extends JPanel {
     }
 
     // push the first half of room onto queue
-    queue.enqueue(new Rectangle((int) temp.getX(), (int) temp.getY(), (int) temp.getWidth(), newHeight));
+    queue.enqueue(new Rectangle((int) temp.getX(), (int) temp.getY(),
+      (int) temp.getWidth(), newHeight));
 
     // push the second half of room onto queue
-    queue.enqueue(new Rectangle((int) temp.getX(), (int) temp.getY() + newHeight, (int) temp.getWidth(), newHeight));
+    queue.enqueue(new Rectangle((int) temp.getX(),
+      (int) temp.getY() + newHeight, (int) temp.getWidth(), newHeight));
 
     // replace old rectangle shapes into queue
     while (!q.isEmpty()) {
