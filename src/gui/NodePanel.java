@@ -74,12 +74,12 @@ public class NodePanel extends JPanel {
 
     if (null != point) {
       graphics.setColor(Color.BLACK);
-      graphics.drawLine(x + (blanks * NODE_WIDTH) + (NODE_WIDTH/2),
+      graphics.drawLine(x + (blanks * NODE_WIDTH) + (NODE_WIDTH / 2),
         y, point.x, point.y);
     }
 
     // pass location of current node's bottom half
-    point = new Point(x + (blanks * NODE_WIDTH) + (NODE_WIDTH/2),
+    point = new Point(x + (blanks * NODE_WIDTH) + (NODE_WIDTH / 2),
       y + NODE_HEIGHT);
 
     drawNode(graphics, x, y + (NODE_HEIGHT * 2), node.getLeftChild(), point);
