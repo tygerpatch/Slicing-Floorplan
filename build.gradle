@@ -29,9 +29,9 @@ sourceSets {
 
 task checkstyleReport(dependsOn: checkstyleMain) << {
 	ant.xslt(
-		basedir: "$buildDir/reports/checkstyle/",
-		destdir: "$buildDir/reports/checkstyle/",
-		style: "config/checkstyle/checkstyle-frames.xsl") {
+		in: "$buildDir/reports/checkstyle/main.xml",
+		style: "config/checkstyle/checkstyle-frames.xsl",
+		out: "$buildDir/reports/checkstyle/overview-frame.html") {
 
 		param(name: "output.dir", expression:"$buildDir/reports/checkstyle/")
             }
