@@ -22,9 +22,11 @@ public class MainPanel extends JPanel {
   private JButton rooms;
   private JButton nodes;
 
+  private static final int rows = 1, cols = 3;
+
   public MainPanel() {
     JPanel fileChooserPanel = new JPanel();
-    fileChooserPanel.setLayout(new GridLayout(1, 3));
+    fileChooserPanel.setLayout(new GridLayout(rows, cols));
 
     // this JTextField will display the path of file choosen
     txtField = new JTextField(10);
