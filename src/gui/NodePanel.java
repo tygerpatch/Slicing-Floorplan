@@ -35,7 +35,7 @@ public class NodePanel extends JPanel {
   private void drawNode(Graphics graphics, int x, int y,
     BinaryTreeNode<Character> node, Point point) {
 
-    if(null == node) {
+    if (null == node) {
       return;
     }
 
@@ -43,7 +43,7 @@ public class NodePanel extends JPanel {
     int blanks = (int) Math.pow(2, tree.height(node));
     char ch = node.getValue();
 
-    if(('|' == ch) || ('-' == ch)) {
+    if (('|' == ch) || ('-' == ch)) {
       // draw circle
       graphics.setColor(Color.YELLOW);
       graphics.fillOval(x + (blanks * NODE_WIDTH), y, NODE_WIDTH, NODE_HEIGHT);
@@ -72,7 +72,7 @@ public class NodePanel extends JPanel {
     graphics.drawString("" + node.getValue(),
       x + (blanks * NODE_WIDTH) + charWidth, y + ascent);
 
-    if(null != point) {
+    if (null != point) {
       graphics.setColor(Color.BLACK);
       graphics.drawLine(x + (blanks * NODE_WIDTH) + (NODE_WIDTH/2),
         y, point.x, point.y);
