@@ -63,15 +63,15 @@ public class MainPanel extends JPanel {
     return txtField;
   }
 
-  public void setBrowseActionListener(ActionListener actionListener) {
+  public void setBrowseActionListener(final ActionListener actionListener) {
     browse.addActionListener(actionListener);
   }
 
-  public void setRoomsActionListener(ActionListener actionListener) {
+  public void setRoomsActionListener(final ActionListener actionListener) {
     rooms.addActionListener(actionListener);
   }
 
-  public void setNodesActionListener(ActionListener actionListener) {
+  public void setNodesActionListener(final ActionListener actionListener) {
     nodes.addActionListener(actionListener);
   }
 
