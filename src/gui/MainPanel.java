@@ -50,7 +50,7 @@ public class MainPanel extends JPanel {
     drawPanel.add(new JLabel(""));
     drawPanel.add(rooms);
     drawPanel.add(new JLabel(""));
-    drawPanel.add(nodes );
+    drawPanel.add(nodes);
     drawPanel.add(new JLabel(""));
 
     setLayout(new BorderLayout());
