@@ -24,38 +24,33 @@ public class RoomPanel extends JPanel {
   /**
    * Constructor creates a new RoomPanel
    *
-   * @param tree
-   *          the Tree to use when drawing the rooms
+   * @param tree the Tree to use when drawing the rooms
    */
-  public RoomPanel(BinaryTree<Character> tree) {
+  public RoomPanel(final BinaryTree<Character> tree) {
     this.tree = tree;
   }
 
   /**
    * Override’s JPanel’s paint method to draw rooms
    *
-   * @param g
-   *          the Graphics object used in drawing rooms
+   * @param g the Graphics object used in drawing rooms
    */
-  public void paint(Graphics g) {
+  public void paint(final Graphics g) {
     drawRooms((Graphics2D) g, 10, 10, 100, 100);
   }
 
   /**
    * This method is called to draw the rooms as is described by the tree
    *
-   * @param g
-   *          the Graphics2D to draw the rooms on
-   * @param x
-   *          the integer x coordinate of floor’s top left corner
-   * @param y
-   *          the integer y coordinate of floor’s top left corner
-   * @param width
-   *          the width of the floor
-   * @param height
-   *          the height of the floor
+   * @param g the Graphics2D to draw the rooms on
+   * @param x the integer x coordinate of floor’s top left corner
+   * @param y the integer y coordinate of floor’s top left corner
+   * @param width the width of the floor
+   * @param height the height of the floor
    */
-  public void drawRooms(Graphics2D g, int x, int y, int width, int height) {
+  public void drawRooms(final Graphics2D g, final int x, final int y,
+    final int width, final int height) {
+
     // first create a new LinkedQueue
     // and push on a rectangular representation of the floor (without rooms)
     queue = new NodeQueue<Rectangle>();
@@ -67,12 +62,12 @@ public class RoomPanel extends JPanel {
   /**
    * This recursive draws the individual rooms using inorder traversal
    *
-   * @param node
-   *          the node used to determine whether to draw a cut or a room
-   * @param g
-   *          the Graphics2D object to draw on
+   * @param node the node used to determine whether to draw a cut or a room
+   * @param g the Graphics2D object to draw on
    */
-  private void drawRooms(BinaryTreeNode<Character> node, Graphics2D g) {
+  private void drawRooms(final BinaryTreeNode<Character> node,
+    final Graphics2D g) {
+
     switch (node.getValue()) {
       case '|':
         drawVerticalCut();
