@@ -162,10 +162,8 @@ public class RoomPanel extends JPanel {
    * This method draws the rectangular outline of the first room in queue And
    * then prints the node’s ch value in the center of the room
    *
-   * @param node
-   *          the Node object containing room’s char identifier
-   * @param g
-   *          the Graphics2D object to draw on
+   * @param node the Node object containing room’s char identifier
+   * @param g the Graphics2D object to draw on
    */
   private void drawRoom(BinaryTreeNode<Character> node, Graphics2D g) {
     Rectangle temp = (Rectangle) queue.dequeue();
